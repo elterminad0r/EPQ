@@ -1,0 +1,120 @@
+<?doctype HTML>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <style>
+   table {  
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 100%;
+    border-collapse: 
+    collapse; border-spacing: 0; 
+    empty-cells: show;
+}
+
+td, th {  
+    border: 1px solid transparent; /* No more visible border */
+    height: 30px; 
+    transition: all 0.3s;  /* Simple transition for hover effect */
+}
+
+th {  
+    background: #DFDFDF;  /* Darken header a bit */
+    font-weight: bold;
+}
+
+td {  
+    background: #FAFAFA;
+    text-align: center;
+}
+
+/* Cells in even rows (2,4,6...) are one color */        
+tr:nth-child(even) td { background: #F1F1F1; }   
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */        
+tr:nth-child(odd) td { background: #FEFEFE; }  
+
+tr td:hover { background: #666; color: #FFF; }  
+/* Hover cell effect! */
+  </style>
+ </head>
+ <body>
+  <table>
+   <thead>
+    <th>
+     Date
+    </th>
+    <th>
+     Work covered
+    </th>
+    <th>
+     Problems encountered
+    </th>
+    <th>
+     Sources used
+    </th>
+    <th>
+     What next?
+    </th>
+    <th>
+     Notes
+    </th>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      2016-11-16
+     </td>
+     <td>
+      Filled out PPR
+     </td>
+     <td>
+      wasn't yet entirely sure about fine details
+     </td>
+     <td>
+     </td>
+     <td>
+      complete the timescale
+     </td>
+     <td>
+      (entered retroactively)
+     </td>
+    </tr>
+    <tr>
+     <td>
+      2016-11-23
+     </td>
+     <td>
+      Decided in what format to store this diary and then created it
+     </td>
+     <td>
+     </td>
+     <td>
+     </td>
+     <td>
+      Improve the timeline
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      2016-11-23
+     </td>
+     <td>
+      Wrote a short script to display the diary in HTML form
+     </td>
+     <td>
+      Making this convenient and debugging/considering libraries
+     </td>
+     <td>
+     </td>
+     <td>
+     </td>
+     <td>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
+</html>
