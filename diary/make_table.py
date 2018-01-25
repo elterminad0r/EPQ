@@ -50,6 +50,7 @@ th {
 td {  
     background: #FAFAFA;
     text-align: center;
+    padding: 15px;
 }
 
 /* Cells in even rows (2,4,6...) are one color */        
