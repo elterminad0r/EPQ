@@ -2,6 +2,7 @@
 Format the diary tsv file
 """
 
+import sys
 import csv
 import argparse
 import tabulate
@@ -84,4 +85,9 @@ def get_htmltab(heads, data):
 if __name__ == "__main__":
     args = get_args()
     head, *data = get_diary(args.input)
+
+    for ind, dat in enumerate(data, 2):
+        if len(dat) != len(head):
+            sys.exit("bad row {}:{}".format(ind, dat))
+
     args.output.write(get_htmltab(head, data))

@@ -1,15 +1,20 @@
-Date,Work covered,Problems encountered,Sources used,What next?,Notes
-2017-11-16,Filled out PPR,wasn't yet entirely sure about fine details,,complete the timescale,(entered retroactively)
-2017-11-23,Decided in what format to store this diary and then created it,,,Improve the timeline,
-2017-11-23,Wrote a short script to display the diary in HTML form,Making this convenient and debugging/considering libraries,,,
-2017-12-04,Worked through the material on researching and referencing (AO2) from the sharepoint (to catch up on missed lesson),Not sure what the abbreviations should be used for,EP sharepoint,Set up BibTeX bibliography,(This was entered on 12-07)
-2017-12-06,Set up the .bib files and pipeline for building the dissertation,Properly compiling LaTeX files,Stackoverflow,,
-2017-12-07,Evaluated some previous pupils' EPs - found out that lots of marks are awarded for things other than actual writing,"Project 3 - Baking...",How the marking actually works,Expand my own timescale/diary and PPR,
-2017-12-14,Got my dad to peer review my project so far,,,Continue development + work on gantt chart,good diary
-2017-12-20,Did some research on Hamming codes and took some notes on the application/implementation,0-based vs 1-based indexing,,,
-2017-12-30,Started planning how to implement a Hamming encoder in binary Python,,,,
-2018-1-4,Started to implement the Hamming encoder,,,,
-2018-1-4,Considered available primary research,,,Contact Leo\, Aylwyn
-2018-1-7,Completed and implemented test plan for Hamming encoder,,,,
-2018-1-11,"Decided on using LaTeX to write my dissertation, researched and experimented with different themes",,,,
-2018-1-22,Started to develop the LaTeX document structure and made a rough first draft of dissertation (testing ideas and aesthetics),,,,
+Date,Work covered,Problems encountered,What next?,Notes if applicable
+2017-11-16,Filled out PPR,wasn't yet entirely sure about fine details,complete the timescale,(entered retroactively)
+2017-11-23,Decided in what format to store this diary and then created it,Also considered tsv and what date format to use,Improve the timeline and add to the diary,
+2017-11-23,Wrote a short script to display the diary in HTML form,Making this convenient and debugging/considering libraries,Add to the diary and maybe do something similar for timescale,
+2017-12-04,Worked through the material on researching and referencing (AO2) from the sharepoint (to catch up on missed lesson),Not sure what the abbreviations should be used for,Start to apply this to my own research,(This was entered on 12-07)
+2017-12-07,Evaluated some previous pupils' EPs - found out that lots of marks are awarded for things other than actual writing,How the marking actually works,Expand my own timescale/diary and PPR,
+2017-12-14,Got my dad to peer review my project so far,The timescale and diary can be a little unclear and haven't started dissertation,Try to add more information to each diary entry and perhaps develop a Gantt chart,
+2017-12-20,Did some research on Hamming codes and took some notes on the application/implementation,0-based vs 1-based indexing,Start to translate to actual code,
+2017-12-30,Started planning how to implement a Hamming encoder in binary Python,,Start to implement the binary data formats and algorithms,
+2018-1-4,Started to implement the Hamming encoder,Indexing into data vs code,Finish the program and write test plan,Uses list/bit representation
+2018-1-4,Considered available primary research,Survey is very much inapplicable here,"Contact Leo, Aylwyn",
+2018-1-7,Completed and implemented test plan for Hamming encoder,Remembering/researching how to use unittest,Eventually add some more test cases/use real world or generated data,Start to work more on dissertation/how to present program
+2018-1-11,"Decided on using LaTeX to write my dissertation, researched and experimented with different themes",Latex workflow (using pdflatex and repeated compilation) and some latex bugs,Start to write the document and look at bibtex,
+2018-1-22,Started to develop the LaTeX document structure and made a rough first draft of dissertation (testing ideas and aesthetics),What font size to use,Also consider how diagrams might be incorporated,I can reuse some of the things found doing computing assignments
+2018-1-25,Reviewed progress so far,OneDrive didn't really sufficiently reflect what I'd done,Fill in bits of diary and upload stuff to OneDrive,
+2018-1-25,Started looking at TikZ to present a mindmap of my project/initial thoughts,Using tikz without graphical bugs and realised I wasn't entirely sure how I would present my project as a mindmap,Continue to work on mindmap/look at how to include it in dissertation,
+2018-1-29,Researched BibTex and set up the .bib file w/ makefile. Got two original sources (see sources.bib),How to cite an "introductory" PDF in bibtex (ended up using @misc),Continue to research and add sources. Also add a source tracker rather than just a bibliography,
+2018-2-1,Found two more sources and cited them in .bib file,Choosing appropriate tags and figuring out how to cite with bibtex,Continue to find sources/think about where the sources can be incorporated in dissertation,
+2018-2-1,Retroactively documented problems and approach in diary,Frustration with inadvertently incorrect data entry,Continue to fully document what I do,
+2018-2-1,Updated the Python HTML compiler script to warn of bad csv formatting (to prevent frustration),,I really want to improve the format and content of my timescale,
