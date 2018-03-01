@@ -18,3 +18,6 @@ Date,Work covered,Problems encountered,What next?,Notes if applicable
 2018-2-1,Found two more sources and cited them in .bib file,Choosing appropriate tags and figuring out how to cite with bibtex,Continue to find sources/think about where the sources can be incorporated in dissertation,
 2018-2-1,Retroactively documented problems and approach in diary,Frustration with inadvertently incorrect data entry,Continue to fully document what I do,
 2018-2-1,Updated the Python HTML compiler script to warn of bad csv formatting (to prevent frustration),,I really want to improve the format and content of my timescale,
+2018-2-13,Found paper on polynomial codes which I took some notes on and then added to my bibliography,It seems quite sophisticated and is a little dense,At some point consider how these might be implemented,
+2018-2-16,Found a good paper on Hadamard codes and did some other research on Hadamard codes,The actual paper doesn't seem entirely applicable,Implement basic Hadamard codes and isomorph to DNA,
+2018-2-19,Started to write the Python code to generate Hadamard matrices,Whether to use numpy or make a custom matrix class,Write a test suite and complete the code,
