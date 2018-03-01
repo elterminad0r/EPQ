@@ -1,0 +1,85 @@
+\documentclass{article}
+\title{Source evaluation}
+\author{Izaak van Dongen}
+
+\usepackage{savetrees}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{commath}
+
+\usepackage[parfill]{parskip}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx}
+
+\graphicspath{ {images/} }
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{ 0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\lstset{
+    literate={~} {$\sim$}{1}
+}
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+
+    \section{Source evaluation}
+    \subsection{Error detecting and error correcting codes \cite{Hamming}}
+
+    This is a paper by R. W. Hamming, who contributed much to modern
+    error-correcting codes. One of the main encoding types used in my project
+    is even named the Hamming code. It has formed much of the basis of modern
+    communication theory and can certainly be trusted.
+
+    \subsection{A mathematical theory of communication \cite{Shannon}}
+
+    This paper, together with \cite{Hamming} are generally considered to be the
+    seminal works on coding theory. This lays much of the groundwork for
+    communication theory and gives a more general definition of the Hamming
+    Code
+
+    \subsection{Generalized dna barcode design based on hamming codes \cite{HammingBarcodes}}
+
+    This article is very much relevant to what my project is about. It doesn't
+    seem to be very clear though, and it uses a seemingly inoptimal form of
+    parity. However it provides helpful insight into what actual researchers in
+    the field are doing and have done with these ideas.
+
+    \subsection{Introduction to coding theory \cite{CodeIntro}}
+
+    This is not a great academic source, but very helpful for reaching more of
+    a `layman's' kind of understanding of coding theory.
+
+\bibliography{sources}{}
+\bibliographystyle{unsrt}
+
+\end{document}
