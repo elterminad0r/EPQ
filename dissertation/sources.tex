@@ -2,7 +2,7 @@
 \title{Source evaluation}
 \author{Izaak van Dongen}
 
-\usepackage{savetrees}
+\usepackage{fullpage}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -12,6 +12,8 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+
+\usepackage{natbib}
 
 \usepackage{graphicx}
 
@@ -50,36 +52,64 @@
 
 \begin{document}
     \maketitle
-    \tableofcontents
 
-    \section{Source evaluation}
-    \subsection{Error detecting and error correcting codes \cite{Hamming}}
+    \section{Error detecting and error correcting codes \citep*{Codes1950Hamming}}
 
     This is a paper by R. W. Hamming, who contributed much to modern
     error-correcting codes. One of the main encoding types used in my project
     is even named the Hamming code. It has formed much of the basis of modern
     communication theory and can certainly be trusted.
 
-    \subsection{A mathematical theory of communication \cite{Shannon}}
+    \section{A mathematical theory of communication \citep*{Communication1948Shannon}}
 
-    This paper, together with \cite{Hamming} are generally considered to be the
-    seminal works on coding theory. This lays much of the groundwork for
-    communication theory and gives a more general definition of the Hamming
+    This paper, together with \citep*{Codes1950Hamming} are generally considered
+    to be the seminal works on coding theory. This lays much of the groundwork
+    for communication theory and gives a more general definition of the Hamming
     Code
 
-    \subsection{Generalized dna barcode design based on hamming codes \cite{HammingBarcodes}}
+    \section{Generalized dna barcode design based on hamming codes \citep*{HammingBarcodes2012BystrykhLeonid}}
 
     This article is very much relevant to what my project is about. It doesn't
     seem to be very clear though, and it uses a seemingly inoptimal form of
     parity. However it provides helpful insight into what actual researchers in
     the field are doing and have done with these ideas.
 
-    \subsection{Introduction to coding theory \cite{CodeIntro}}
+    \section{Introduction to coding theory \citep*{CodeIntro2010Guruswami}}
 
     This is not a great academic source, but very helpful for reaching more of
     a `layman's' kind of understanding of coding theory.
 
-\bibliography{sources}{}
-\bibliographystyle{unsrt}
+    \section{Polynomial codes: an optimal design for high-dimensional coded matrix multiplication \citep*{PolynomialCodes2017MaddahAvestimehr}}
+
+    This source is very technically detailed, which isn't necessarily a bad
+    thing but makes it pretty dense. Potentially very useful for a complicated
+    understanding of polynomial codes, although I'm not sure if I'll use
+    polynomial codes.
+
+    \section{Families of hadamard z2z4q8-codes \citep*{HadamardZ2Z2012RioRifa}}
+
+    This source turned out not to be very useful as it only relates to a highly
+    specific class of Hadamard code. Other simpler tutorials on the internet
+    are much more useful.
+
+    \section{Hadamard matrices and their applications \citep*{HadamardMatrices1978HedayatWallis}}
+
+    This is a far more appropriate paper that gives a more general overview of
+    what a hadamard matrix is and can be used for. Very useful overall.
+
+    \section{The search for hadamard matrices \citep*{HadamardSearch1963GolombBaumert}}
+
+    \section{Hadamard matrices and their designs: A coding-theoretic approach \citep*{HadamardCodingTheoretic1992AssmusKey}}
+
+    \section{Hadamard designs \citep*{HadamardDesigns1972Spence}}
+
+    \section{Lifted polynomials over ${F}_{16}$ and their applications to dna codes \citep*{PolynomialDNA2013OztasSiap}}
+
+    \section{Codes, not ciphers \citep*{CodesCiphers1010Baylis}}
+
+    \section{Error correcting codes: Practical origins and mathematical implications \citep*{CodesOrigins1978Pless}}
+
+\bibliographystyle{agsm}
+\bibliography{sources}
 
 \end{document}

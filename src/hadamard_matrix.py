@@ -1,7 +1,7 @@
-import numpy as np
+import time
 
 def prettify(had_mat):
-    return "\n".join(" ".join(str(int(i)) for i in row) for row in had_mat)
+    return "\n".join("".join("x" if i else " " for i in row) for row in had_mat)
 
 def hadamard_iterate(mat):
     for r_ind in range(len(mat)):
@@ -10,7 +10,7 @@ def hadamard_iterate(mat):
 
 had_mat = [[1]]
 
-for _ in range(5):
+start = time.time()
+for i in range(20):
     hadamard_iterate(had_mat)
-    print()
-    print(prettify(had_mat))
+    print("iteration {} successful at {:.3f}s".format(i, time.time() - start))

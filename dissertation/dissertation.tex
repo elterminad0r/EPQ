@@ -2,16 +2,20 @@
 \title{The application of noisy-channel coding techniques to DNA barcoding (Early structure/ideas)}
 \author{Izaak van Dongen}
 
-\usepackage{savetrees}
+\usepackage{fullpage}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{commath}
 
+\usepackage[nottoc]{tocbibind}
+
 \usepackage[parfill]{parskip}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+
+\usepackage{natbib}
 
 \usepackage{graphicx}
 
@@ -24,6 +28,7 @@
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},
     commentstyle=\color{codegreen},
@@ -32,6 +37,7 @@
     stringstyle=\color{codepurple},
     basicstyle=\footnotesize,
     breaklines=true,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
     captionpos=b,
     keepspaces=true,
     numbers=left,
@@ -98,70 +104,17 @@
 
     The script implementing a simple binary Hamming code is as follows:
 
-\begin{lstlisting}[language=Python, caption=Binary Hamming code in Python]
-#!/usr/bin/env python3
-
-"""
-Hamming encoding framework for binary objects, using even parity.
-"""
-
-from itertools import count, takewhile
-
-def powers_to(n):
-    return takewhile(lambda x: x < n, (1 << i for i in count()))
-
-def hamming_encode(bin_stream):
-    pwr = 1
-    out = []
-
-    for bit in bin_stream:
-        while len(out) + 1 == pwr:
-            pwr <<= 1
-            out.append(0)
-        out.append(bit)
-
-    for i in powers_to(len(out)):
-        out[i - 1] = 1 & sum(out[pbit] for pstart in range(i - 1, len(out), i << 1)
-                                       for pbit in range(pstart, pstart + i))
-    return out
-\end{lstlisting}
+\lstinputlisting[language=Python, caption=Binary Hamming code in Python]{../src/binary_hamming.py}
 
     This code is accompanied by the following testing scheme:
 
-\begin{lstlisting}[language=Python, caption=binary\_hamming unit tests]
-"""
-Unit tests for binary_hamming.py
-"""
-
-import unittest
-
-from binary_hamming import powers_to, hamming_encode
-
-class BinaryHammingTestCase(unittest.TestCase):
-    def test_powers_to(self):
-        self.assertEqual(list(powers_to(0)), [])
-        self.assertEqual(list(powers_to(1)), [])
-        self.assertEqual(list(powers_to(2)), [1])
-        self.assertEqual(list(powers_to(4)), [1, 2])
-        self.assertEqual(list(powers_to(5)), [1, 2, 4])
-        self.assertEqual(list(powers_to(13)), [1, 2, 4, 8])
-
-    def test_hamming_encode(self):
-        self.assertEqual(hamming_encode([1, 0, 1, 1]), [0, 1, 1, 0, 0, 1, 1])
-
-if __name__ == "__main__":
-    unittest.main()
-\end{lstlisting}
+\lstinputlisting[language=Python, caption=binary\_hamming unit tests]{../src/test_binary_hamming.py}
 
     \section{Source}
 
-\nocite{CodeIntro}
-\nocite{Hamming}
-\nocite{HammingBarcodes}
-\nocite{Shannon}
-\nocite{PolynomialCodes}
-\nocite{Hadamard}
-\bibliography{sources}{}
-\bibliographystyle{unsrt}
+\nocite{*}
+
+\bibliographystyle{agsm}
+\bibliography{sources}
 
 \end{document}
