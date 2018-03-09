@@ -1,5 +1,5 @@
 \documentclass{article}
-\title{Source evaluation/tracker}
+\title{Source tracker}
 \author{Izaak van Dongen}
 
 \usepackage{fullpage}
@@ -56,10 +56,10 @@
 \begin{document}
     \maketitle
 
+    \begin{center}
     {
     \renewcommand{\arraystretch}{2.0}
-    \begin{center}
-    \begin{longtable}{p{5cm} p{5cm} p{5cm}} \toprule
+    \begin{longtable}{p{0.2\linewidth} p{0.35\linewidth} p{0.35\linewidth}} \toprule
     Source & Source content & Source evaluation \\ \midrule
 
     Error detecting and error correcting codes \citep*{Codes1950Hamming} &
@@ -67,7 +67,14 @@
     This is a paper by R. W. Hamming, who contributed much to modern
     error-correcting codes. One of the main encoding types used in my project
     is even named the Hamming code. It has formed much of the basis of modern
-    communication theory and can certainly be trusted. \\
+    communication theory and can certainly be trusted. &
+    
+    daadsf ads fads fadsf asdf ads fasdf 
+    daadsf ads fads fadsf asdf ads fasdf 
+    daadsf ads fads fadsf asdf ads fasdf 
+    daadsf ads fads fadsf asdf ads fasdf 
+    
+    \\
 
     A mathematical theory of communication \citep*{Communication1948Shannon} & 
 
@@ -152,13 +159,17 @@
 
     \\
 
+    Decoding the hamming code \citep*{DecodingHamming2006Eherenborg}
+
+    \\
+
     \bottomrule
     \label{tab:sourceeval}
     \end{longtable}
-    \end{center}
     }
 
     \ref{tab:sourceeval}
+    \end{center}
 
     \bibliographystyle{agsm}
     \bibliography{sources}
