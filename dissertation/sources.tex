@@ -1,5 +1,5 @@
 \documentclass{article}
-\title{Source evaluation}
+\title{Source evaluation/tracker}
 \author{Izaak van Dongen}
 
 \usepackage{fullpage}
@@ -8,12 +8,15 @@
 \usepackage{amsfonts}
 \usepackage{commath}
 
+\usepackage{longtable}
+\usepackage{booktabs}
+
 \usepackage[parfill]{parskip}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-\usepackage{natbib}
+\usepackage[square]{natbib}
 
 \usepackage{graphicx}
 
@@ -53,63 +56,111 @@
 \begin{document}
     \maketitle
 
-    \section{Error detecting and error correcting codes \citep*{Codes1950Hamming}}
+    {
+    \renewcommand{\arraystretch}{2.0}
+    \begin{center}
+    \begin{longtable}{p{5cm} p{5cm} p{5cm}} \toprule
+    Source & Source content & Source evaluation \\ \midrule
+
+    Error detecting and error correcting codes \citep*{Codes1950Hamming} &
 
     This is a paper by R. W. Hamming, who contributed much to modern
     error-correcting codes. One of the main encoding types used in my project
     is even named the Hamming code. It has formed much of the basis of modern
-    communication theory and can certainly be trusted.
+    communication theory and can certainly be trusted. \\
 
-    \section{A mathematical theory of communication \citep*{Communication1948Shannon}}
+    A mathematical theory of communication \citep*{Communication1948Shannon} & 
 
     This paper, together with \citep*{Codes1950Hamming} are generally considered
     to be the seminal works on coding theory. This lays much of the groundwork
     for communication theory and gives a more general definition of the Hamming
-    Code
+    Code. \\
 
-    \section{Generalized dna barcode design based on hamming codes \citep*{HammingBarcodes2012BystrykhLeonid}}
+    Generalized dna barcode design based on hamming codes \citep*{HammingBarcodes2012BystrykhLeonid} &
 
     This article is very much relevant to what my project is about. It doesn't
     seem to be very clear though, and it uses a seemingly inoptimal form of
     parity. However it provides helpful insight into what actual researchers in
-    the field are doing and have done with these ideas.
+    the field are doing and have done with these ideas. \\
 
-    \section{Introduction to coding theory \citep*{CodeIntro2010Guruswami}}
+    Introduction to coding theory \citep*{CodeIntro2010Guruswami} &
 
-    This is not a great academic source, but very helpful for reaching more of
-    a `layman's' kind of understanding of coding theory.
+    This is not a very good academic source but gives a good informal overview
+    of coding theory. \\
 
-    \section{Polynomial codes: an optimal design for high-dimensional coded matrix multiplication \citep*{PolynomialCodes2017MaddahAvestimehr}}
+    Polynomial codes: an optimal design for high-dimensional coded matrix multiplication \citep*{PolynomialCodes2017MaddahAvestimehr} &
 
     This source is very technically detailed, which isn't necessarily a bad
     thing but makes it pretty dense. Potentially very useful for a complicated
     understanding of polynomial codes, although I'm not sure if I'll use
-    polynomial codes.
+    polynomial codes. \\
 
-    \section{Families of hadamard z2z4q8-codes \citep*{HadamardZ2Z2012RioRifa}}
+    Families of hadamard z2z4q8-codes \citep*{HadamardZ2Z2012RioRifa} & 
 
     This source turned out not to be very useful as it only relates to a highly
     specific class of Hadamard code. Other simpler tutorials on the internet
-    are much more useful.
+    are much more useful. \\
 
-    \section{Hadamard matrices and their applications \citep*{HadamardMatrices1978HedayatWallis}}
+    Hadamard matrices and their applications \citep*{HadamardMatrices1978HedayatWallis} &
 
     This is a far more appropriate paper that gives a more general overview of
-    what a hadamard matrix is and can be used for. Very useful overall.
+    what a hadamard matrix is and can be used for. Very useful overall. \\
 
-    \section{The search for hadamard matrices \citep*{HadamardSearch1963GolombBaumert}}
+    The search for hadamard matrices \citep*{HadamardSearch1963GolombBaumert} &
 
-    \section{Hadamard matrices and their designs: A coding-theoretic approach \citep*{HadamardCodingTheoretic1992AssmusKey}}
+    This paper gives a very good overview of Hadamard's original construction
+    of the $2^n \times 2^n$ matrices. \\
 
-    \section{Hadamard designs \citep*{HadamardDesigns1972Spence}}
+    Hadamard matrices and their designs: A coding-theoretic approach \citep*{HadamardCodingTheoretic1992AssmusKey} & 
 
-    \section{Lifted polynomials over ${F}_{16}$ and their applications to dna codes \citep*{PolynomialDNA2013OztasSiap}}
+    This paper gives a number of very mathematically involved constructions of
+    Hadamard matrices. I didn't end up using any of these but it provided a
+    useful further background around Hadamard constructions. \\
 
-    \section{Codes, not ciphers \citep*{CodesCiphers1010Baylis}}
+    Hadamard designs \citep*{HadamardDesigns1972Spence} & 
 
-    \section{Error correcting codes: Practical origins and mathematical implications \citep*{CodesOrigins1978Pless}}
+    This paper is about Hadamard designs for alphabet sizes of $n$ where $n
+    \neq 2$. This is potentially very useful information as I am concerned with
+    DNA barcodes, ie $n = 4$. \\
 
-\bibliographystyle{agsm}
-\bibliography{sources}
+    Lifted polynomials over ${F}_{16}$ and their applications to dna codes \citep*{PolynomialDNA2013OztasSiap} & 
+
+    \\
+
+    Codes, not ciphers \citep*{CodesCiphers1010Baylis} &
+
+    \\
+
+    Error correcting codes: Practical origins and mathematical implications \citep*{CodesOrigins1978Pless} &
+
+    \\
+
+    Boole and the algebra of logic \citep*{BooleRecords1956Kneale} &
+
+    This isn't a very mathematically advanced source but my project doesn't
+    need to be very highly complex in this area. This is used for a quick
+    citation on how I can adapt Hadamard generation with additive negation to
+    the Boolean (algebra) system used by computers.
+
+    \\
+
+    The degeneracy of the genetic code and hadamard matrices. \citep*{DegeneracyHadamard2008Petoukhov}
+
+    \\
+
+    Construction of multilevel hadamard matrices with small alphabet \citep*{MultilevelConstruction2008TrinhFan}
+
+    \\
+
+    \bottomrule
+    \label{tab:sourceeval}
+    \end{longtable}
+    \end{center}
+    }
+
+    \ref{tab:sourceeval}
+
+    \bibliographystyle{agsm}
+    \bibliography{sources}
 
 \end{document}
