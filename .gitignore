@@ -12,6 +12,9 @@ bin
 *.lol
 *.out
 *.lof
+*.fdb_latexmk
+*.fls
+
 
 todo
 primary_research_notes.txt

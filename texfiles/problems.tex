@@ -1,0 +1,164 @@
+\documentclass{article}
+\title{Development of skills for my EP}
+\author{Izaak van Dongen}
+
+\usepackage{fullpage}
+
+\usepackage{hologo}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{commath}
+
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\usepackage[parfill]{parskip}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[square]{natbib}
+
+\usepackage{graphicx}
+
+\graphicspath{ {images/} }
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{ 0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\lstset{
+    literate={~} {$\sim$}{1}
+}
+
+\begin{document}
+    \maketitle
+
+    \section{Problems and how they were overcome}
+
+    \begin{center}
+    {
+    \renewcommand{\arraystretch}{2.0}
+    \begin{longtable}{p{0.2\linewidth} p{0.7\linewidth}} \toprule
+
+    Problem & What I did to overcome it \\ \midrule
+
+    Little to no knowledge of the basic usage of \LaTeX &
+
+    In order to develop my basic knowledge of \LaTeX, I mainly used the online
+    resources \url{https://www.latex-project.org/about/} and
+    \url{https://www.sharelatex.com/}
+
+%TODO add more about my preamble, find some URLS and add more detail
+
+    \\
+
+    I wanted to customise my document to take up more of the page &
+
+    I installed and loaded savetrees
+
+    \\
+
+    I wanted to include code I'd written in my \LaTeX document &
+
+    I found out about the listings package and found a suitable configuration
+    online, that I added to somewhat with other sources. I also figured out
+    that I could have \LaTeX directly read from my source files rather than
+    having to include them in my .tex file.
+
+    \\
+
+    I had to create a bibliography, using \LaTeX, or, as I now know,
+    \hologo{BibTeX}. &
+
+    I did some research on how bibliographies worked in \LaTeX. I had already
+    heard of \hologo{BibTeX} citations, and in fact most of the sources I'd
+    used up to this point had provided an option to ``export \hologo{BibTeX}
+    citation''. Because of this, I could narrow my search terms somewhat, and
+    soon found these pages: \url{http://www.bibtex.org/Using/} and 
+    \url{https://www.sharelatex.com/learn/Bibliography_management_with_bibtex}.
+    With these, I'd soon compiled my own .bib file with extensive records of
+    all of my sources.
+
+    \\
+
+%TODO find URLS
+
+    Creating specifically a \textbf{Harvard-referenced} bibliography,
+    customised to my liking. &
+
+    As this seemed to be a requirement of the EP qualification, I needed to
+    modify my \hologo{BibTeX} workflow to the point where everything was
+    Harvard-referenced with author-year citations. I found that this was
+    apparently quite difficult to do with vanilla \hologo{BibTeX} so I decided
+    to use natbib with the agsm style\ldots
+
+    \\
+
+%TODO replicate and insert error, check fullpage
+
+    Loading the natbib package caused \LaTeX to crash while compiling the
+    output PDF, with a seemingly gibberish error &
+
+    After much Googling to no avail, I applied an approach I'd picked up from
+    programming PostScript (another language that compiled to PDF for my
+    purposes). When I first started programming PostScript, I didn't use an
+    interpreter but rather Preview, so I didn't have access to error messages.
+    The craft to finding bugs was to section off parts of the source with
+    comments and then slowly release them again until you found the bug. By
+    doing this I found that loading savetrees was causing the crash. I didn't
+    end up finding out what the actual conflict was being caused by, but
+    instead used the alternative fullpage package.
+
+    \\
+
+%TODO fact check
+
+    Creating nice-looking, effective tables in \LaTeX. &
+
+    For this project I had to create a number of tables, for various documents
+    such as my source evaluation, this document, my diary and at some point I
+    played around with some tables in my dissertation. These tables generally
+    needed to be very long, which standard \LaTeX ``tabular'' mode didn't
+    support.
+    I found out about the longtabs package, together with generic tabulation
+    and also had to increase my arrayfill to make a spacing between my table
+    cells that I found satisfying.
+
+    \\
+
+    \bottomrule
+    \label{tab:sourceeval}
+    \end{longtable}
+    }
+
+    \ref{tab:sourceeval}
+    \end{center}
+
+\end{document}

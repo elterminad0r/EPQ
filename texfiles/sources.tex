@@ -56,79 +56,136 @@
 \begin{document}
     \maketitle
 
+    \section{Some general notes on my sources} \label{sourcenotes}
+
+    Not all of my sources have been cross-referenced, although where possibly
+    I've tried to demonstrate links between papers and their common subject
+    matter. This doesn't really cause any problems though, as most of my
+    sources are mathematical in nature. This means that really any source is
+    either ``wrong'', or ``right'' about a theorem proposed by that source.
+    This is pretty different from academic literature in more empirical fields,
+    where cross-referencing is crucial.  Overwhelmingly, peer-reviewed maths
+    papers older than a couple of years will be correct, and my most important
+    sources are all decades old. This binary nature of mathematics also means
+    that most theorems won't really be produced in more than one paper, except
+    in some cases where an alternative proof is offered.
+
+    \section{Evaluation}
+
     \begin{center}
     {
     \renewcommand{\arraystretch}{2.0}
     \begin{longtable}{p{0.2\linewidth} p{0.35\linewidth} p{0.35\linewidth}} \toprule
-    Source & Source content & Source evaluation \\ \midrule
+    Source & Source content/usage & Source evaluation \\ \midrule
 
     Error detecting and error correcting codes \citep*{Codes1950Hamming} &
 
-    This is a paper by R. W. Hamming, who contributed much to modern
-    error-correcting codes. One of the main encoding types used in my project
-    is even named the Hamming code. It has formed much of the basis of modern
-    communication theory and can certainly be trusted. &
-    
-    daadsf ads fads fadsf asdf ads fasdf 
-    daadsf ads fads fadsf asdf ads fasdf 
-    daadsf ads fads fadsf asdf ads fasdf 
-    daadsf ads fads fadsf asdf ads fasdf 
-    
-    \\
+    Gives a construction of Hamming codes and lays the foundation for many of
+    the concepts around channel-coding that I use in my dissertation. &
+
+    This, is a paper by R. W. Hamming, who contributed much to modern
+    error-correcting codes. It was published over 50 years ago in a respected
+    paper by a respected author and has not only stood the test of time but
+    also formed much of the basis of modern communication theory and can
+    certainly be trusted.  \\
 
     A mathematical theory of communication \citep*{Communication1948Shannon} & 
 
-    This paper, together with \citep*{Codes1950Hamming} are generally considered
-    to be the seminal works on coding theory. This lays much of the groundwork
-    for communication theory and gives a more general definition of the Hamming
-    Code. \\
+    This is also a useful paper for establishing the theory of communicative
+    coding. It is useful for several definitions and general limits. &
+
+    This paper, together with \citep*{Codes1950Hamming} are generally
+    considered to be the seminal works on coding theory. This lays much of the
+    groundwork for communication theory and gives a more general definition of
+    the Hamming Code. Similarly to \citep*{Codes1950Hamming}, this is a paper
+    that can be trusted \\
 
     Generalized dna barcode design based on hamming codes \citep*{HammingBarcodes2012BystrykhLeonid} &
 
     This article is very much relevant to what my project is about. It doesn't
-    seem to be very clear though, and it uses a seemingly inoptimal form of
+    seem to be very clear though, and it uses a seemingly non-optimal form of
     parity. However it provides helpful insight into what actual researchers in
-    the field are doing and have done with these ideas. \\
+    the field are doing and have done with these ideas. &
+
+    It is an article in a reputable, peer reviewed journal by researchers in
+    the field so it can probably be trusted. The journal is slightly less
+    well-known than some others I've made use of. \\
 
     Introduction to coding theory \citep*{CodeIntro2010Guruswami} &
 
-    This is not a very good academic source but gives a good informal overview
-    of coding theory. \\
+    This is more of a crash-course in coding theory, which was useful in
+    developing a basic understanding but can be built on. &
+
+    It's not an academic article so it hasn't been peer reviewed and wasn't
+    written with the aim of academic rigour. However it was produced by a
+    mathematician at a prestigious university so is likely to have some merit.
+    It's also specifically aimed at the teaching of the subject rather than
+    academic description which may be useful for my purposes. \\
 
     Polynomial codes: an optimal design for high-dimensional coded matrix multiplication \citep*{PolynomialCodes2017MaddahAvestimehr} &
 
-    This source is very technically detailed, which isn't necessarily a bad
-    thing but makes it pretty dense. Potentially very useful for a complicated
-    understanding of polynomial codes, although I'm not sure if I'll use
-    polynomial codes. \\
+    This source provides an explanation of a facet of the polynomial code. This
+    code type didn't end up being used for my project but the source was useful
+    in explaining why not. &
 
-    Families of hadamard z2z4q8-codes \citep*{HadamardZ2Z2012RioRifa} & 
+    This source is very technically detailed, which isn't necessarily bad, but
+    this source feels very dense and can very well be difficult to understand
+    for anyone not familiar with this specific subfield of coding theory.  Of
+    course it does have academic merit as it's a published, peer reviewed
+    article. \\
 
-    This source turned out not to be very useful as it only relates to a highly
-    specific class of Hadamard code. Other simpler tutorials on the internet
-    are much more useful. \\
+    Families of Hadamard z2z4q8-codes \citep*{HadamardZ2Z2012RioRifa} & 
+
+    This is an article relating to a specific subset of Hadamard codes. I
+    didn't end up using these codes but this source provided some broader
+    context for what Hadamard codes are/can be used for. &
+
+    This is again a highly technical source but is generally reputable aside
+    from that. \\
 
     Hadamard matrices and their applications \citep*{HadamardMatrices1978HedayatWallis} &
 
-    This is a far more appropriate paper that gives a more general overview of
-    what a hadamard matrix is and can be used for. Very useful overall. \\
+    This is a reasonably low-level paper about Hadamard codes. This was useful
+    for my dissertation as I didn't use any overly complicated Hadamard
+    constructions, and this was a useful source to cite, while also being
+    trustworthy\ldots &
 
-    The search for hadamard matrices \citep*{HadamardSearch1963GolombBaumert} &
+    It's an academic paper from a trustworthy journal that has stood the test
+    of time, and aside from that doesn't really make any outrageous claims,
+    forming more of a useful and approachable summary of the subject matter. \\
 
-    This paper gives a very good overview of Hadamard's original construction
-    of the $2^n \times 2^n$ matrices. \\
+    The search for Hadamard matrices \citep*{HadamardSearch1963GolombBaumert} &
+
+    This paper gives a useful initial summary of the `basic' construction of
+    Hadamard matrices (of size $2^n \times 2^n$)  which I use, corroborating
+    \citep*{HadamardMatrices1978HedayatWallis}. It also provides a nice summary
+    of other constructions, which I used to strengthen my case for not using
+    them as they seemed unnecessary. &
+
+    It's a trustworthy article, and again provides more of a summary. It's
+    written in a relatively friendly manner. \\
 
     Hadamard matrices and their designs: A coding-theoretic approach \citep*{HadamardCodingTheoretic1992AssmusKey} & 
 
     This paper gives a number of very mathematically involved constructions of
     Hadamard matrices. I didn't end up using any of these but it provided a
-    useful further background around Hadamard constructions. \\
+    useful further background around Hadamard constructions, and could be
+    compared/contrasted with \citep*{HadamardSearch1963GolombBaumert} & 
+    
+    It's a trustworthy paper from a trustworthy journal and trustworthy
+    authors. \\
 
     Hadamard designs \citep*{HadamardDesigns1972Spence} & 
 
-    This paper is about Hadamard designs for alphabet sizes of $n$ where $n
-    \neq 2$. This is potentially very useful information as I am concerned with
-    DNA barcodes, ie $n = 4$. \\
+    This paper is about Hadamard designs for alphabets of size $n$ where $n
+    \neq 2$. This is potentially very interesting with respect to my project as
+    the DNA alphabet size $n$ is 4. This source was used to provide citations in my
+    general discussion about conversion between different alphabets. &
+
+    It's a trustworthy paper although it is on an apparently quite obscure
+    subject, making it quite a rare occurrence. This doesn't really reflect on
+    the trustworthiness of the source due to the reasons described in section
+    \ref{sourcenotes}.  \\
 
     Lifted polynomials over ${F}_{16}$ and their applications to dna codes \citep*{PolynomialDNA2013OztasSiap} & 
 
@@ -144,18 +201,25 @@
 
     Boole and the algebra of logic \citep*{BooleRecords1956Kneale} &
 
-    This isn't a very mathematically advanced source but my project doesn't
-    need to be very highly complex in this area. This is used for a quick
-    citation on how I can adapt Hadamard generation with additive negation to
-    the Boolean (algebra) system used by computers.
+    This is used as a small citation on Boolean algebra, which I needed when I
+    was writing about my decision to use boolean inversion rather than additive
+    inversion for my Hadamard construction. This isn't a very mathematically
+    advanced source, but this is in line with my project as Boolean algebra was
+    only a small part of a subset of my project, and the main focus was not on
+    Boolean algebra. &
+
+    This isn't really an article but a set of notes as it was published in
+    `Notes and Records of the Royal Society of London'. While this means it's
+    not the epitome of academic rigour, it's still a useful and factual source
+    on Boolean algebra from the Royal Society.
 
     \\
 
-    The degeneracy of the genetic code and hadamard matrices. \citep*{DegeneracyHadamard2008Petoukhov}
+    The degeneracy of the genetic code and Hadamard matrices. \citep*{DegeneracyHadamard2008Petoukhov}
 
     \\
 
-    Construction of multilevel hadamard matrices with small alphabet \citep*{MultilevelConstruction2008TrinhFan}
+    Construction of multilevel Hadamard matrices with small alphabet \citep*{MultilevelConstruction2008TrinhFan}
 
     \\
 
