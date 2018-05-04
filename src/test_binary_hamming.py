@@ -17,6 +17,9 @@ class BinaryHammingTestCase(unittest.TestCase):
 
     def test_hamming_encode(self):
         self.assertEqual(hamming_encode([1, 0, 1, 1]), [0, 1, 1, 0, 0, 1, 1])
+        self.assertEqual(hamming_encode(
+            [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0]),
+            [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0])
 
 if __name__ == "__main__":
     unittest.main()
