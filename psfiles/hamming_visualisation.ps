@@ -1,0 +1,99 @@
+%!PS-Adobe-3.0
+
+/roman {
+    /Times-Roman findfont
+    exch scalefont
+    setfont
+} def
+
+/center {
+    /txt exch def
+    /y exch def
+    /x exch def
+
+    txt dup stringwidth pop
+    2 div
+    x exch sub
+    y moveto
+} def
+
+/right {
+    /txt exch def
+    /y exch def
+    /x exch def
+
+    txt dup stringwidth pop
+    x exch sub
+    y moveto
+} def
+
+/square {
+    /y exch def
+    /x exch def
+    newpath
+    x y moveto
+    x y 1 add lineto
+    x 1 add y 1 add lineto
+    x 1 add y lineto
+    closepath fill
+} def
+
+0.8 roman
+
+10 dup scale
+2 0 translate
+0.05 setlinewidth
+
+1 1 31 {
+    /ind exch def
+
+    newpath
+    ind 0.5 add 6.5
+    ind 2 string cvs center show
+
+    newpath
+    ind 6 moveto
+    ind 1 lineto
+    stroke
+
+    0 1 4 {
+        /pos exch def
+        /par 2 pos exp cvi def
+        par ind and 0 eq not {
+            ind 5 pos sub square
+        } if
+    } for
+} for
+
+0 1 4 {
+    /pos exch def
+    /par 2 pos exp cvi def
+
+    newpath
+    0.5 5 pos sub
+    par 2 string cvs right show
+
+    newpath
+    1 pos 1 add moveto
+    32 pos 1 add lineto
+    stroke
+} for
+
+newpath
+1 6 moveto
+32 6 lineto
+stroke
+
+1 roman
+
+newpath
+16 8 (Covered indices) center show
+
+gsave
+newpath
+-0.6 3 translate
+90 rotate
+0 0 (Parity index) center show
+grestore
+
+showpage

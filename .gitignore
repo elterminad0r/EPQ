@@ -14,7 +14,7 @@ bin
 *.lof
 *.fdb_latexmk
 *.fls
-
+*.gz
 
 todo
 primary_research_notes.txt
