@@ -8,35 +8,49 @@
         \end{tabular}
         }
 
+% make the document take up more of the page
 \usepackage{fullpage}
 
+% pretty table rules and multirow entries
 \usepackage{booktabs}
 \usepackage{multirow}
 
+% plotting mathematical functions (needs version request)
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
 
+% \url function and clickable table of contents
 \usepackage[hidelinks]{hyperref}
 
+% maths symbols
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{commath}
 
+% courier font
 \usepackage{courier}
 
+% bibliography in table of contents, correctly.
 \usepackage[nottoc]{tocbibind}
 
+% no paragraph indent
 \usepackage[parfill]{parskip}
 
+% more advanced handling of utf8 and fonts
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+% bibliography management
 \usepackage[square]{natbib}
 
+% graphics, like postscript
 \usepackage{graphicx}
-%\usepackage{auto-pst-pdf}
 
+% code listings
 \usepackage{listings}
+
+% needed for code listings and colouring
 \usepackage{color}
 
 \definecolor{codegreen}{rgb}{ 0,0.6,0}
@@ -44,6 +58,7 @@
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
+% listing style
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},
     commentstyle=\color{codegreen},
@@ -65,9 +80,13 @@
 
 \lstset{style=mystyle}
 
+% listing exceptionsal characters
 \lstset{
     literate={~} {$\sim$}{1}
 }
+
+% stop things from jumping across to pages too much.
+\allowdisplaybreaks
 
 \begin{document}
     \maketitle
@@ -127,7 +146,7 @@
     \begin{align*}
     d(S, R) &= 1\\
     d(S, T) &= 2\\
-    \text{where}\\
+    \text{where}\ 
     S &= \texttt{abc\textcolor{red}{d}e}\\
     R &= \texttt{abc\textcolor{blue}{f}e}\\
     T &= \texttt{a\textcolor{codegreen}{x}c\textcolor{codegreen}{z}e}
@@ -227,7 +246,7 @@
     This is quite a poor asymptotic performance - as the number of data bits
     grows larger, the number of parity bits required grows relatively fast. In
     the next section, I describe a similar code that uses only $\log_2 n$. Here
-    are some quick plots comparing the two functions:
+    is a quick plot comparing the two functions:
 
 \begin{center}
     \begin{tikzpicture}[trim axis left]
@@ -373,6 +392,10 @@ print("\n".join(r"    {} \\".format(" & ".join(r"\texttt{{{}}}".format(add_color
 {../psfiles/hamming_visualisation.ps}
 
     \section{Source}
+
+    This document consists of about
+    \input{|"texcount dissertation.tex | awk '/^Words in text/{print $NF-1}'"}
+    words.
 
     All code and source \TeX/\LaTeX{} files can be found at
     \url{https://github.com/elterminad0r/EPQ}.

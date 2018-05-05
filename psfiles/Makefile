@@ -5,5 +5,5 @@ view: hamming_visualisation.eps
 ghost:
 	gs hamming_visualisation.ps
 
-hamming_visualisation.eps: hamming_visualisation.ps routines.ps
+hamming_visualisation.eps: hamming_visualisation.ps
 	ps2eps -f hamming_visualisation.ps
