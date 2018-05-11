@@ -1,7 +1,11 @@
 ## December
-- Have completed research on string distances and find relevant literature
+- Research string distance
+    - Hamming distance
+    - Levenshtein distance
+    - Find some sources
 ## January
-- Have researched and written up string distances / the premise in terms of DNA codes
+- Have written about string distances and how these apply to sequences in my
+  dissertation
 ## February
 - Have implemented the code to find different distance metrics and apply this to a pool of codes (sieve)
 ## March

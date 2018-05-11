@@ -1,0 +1,40 @@
+%!PS-Adobe-3.0
+
+10 dup scale
+
+[
+[1 0 0 1 0 1 1 0]
+[1 1 0 0 0 0 1 1]
+[1 0 1 0 0 1 0 1]
+[1 1 1 1 0 0 0 0]
+[1 0 0 1 1 0 0 1]
+[1 1 0 0 1 1 0 0]
+[1 0 1 0 1 0 1 0]
+[1 1 1 1 1 1 1 1]
+[0 1 1 0 1 0 0 1]
+[0 0 1 1 1 1 0 0]
+[0 1 0 1 1 0 1 0]
+[0 0 0 0 1 1 1 1]
+[0 1 1 0 0 1 1 0]
+[0 0 1 1 0 0 1 1]
+[0 1 0 1 0 1 0 1]
+[0 0 0 0 0 0 0 0]
+]
+{
+    0 1 translate
+    gsave
+    {
+        1 0 translate
+        1 eq {
+            newpath
+            0 0 moveto
+            1 0 lineto
+            1 1 lineto
+            0 1 lineto
+            closepath fill
+        } if
+    } forall
+    grestore
+} forall
+
+showpage

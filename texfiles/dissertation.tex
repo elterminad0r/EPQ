@@ -47,6 +47,9 @@
 % graphics, like postscript
 \usepackage{graphicx}
 
+% used to horizontally align floats
+\usepackage{subfig}
+
 % code listings
 \usepackage{listings}
 
@@ -129,8 +132,17 @@
           are set to barcode size and maximum number of mutations that can
           occur?
     \end{itemize}
-    
+
     All of these will be further explored in this dissertation.
+
+    Note that I have written various ``scripts'', or ``programs''. These are
+    basically a series of instructions written in a certain programming
+    ``language'' that tell the computer what to do. When these are included the
+    the dissertation, they will generally also have ``comments'' in them. These
+    are sections of the code which are preceded by a special character (normally
+    \% or \#) that tells the computer to ignore these. The comments should be
+    highlighted in green. They will offer a simplified explanation of what the
+    code does.
 
     \section{The Hamming distance}
 
@@ -142,12 +154,12 @@
 
     The Hamming distance between any two equally long strings $S$ and $R$
     is given by the number of characters at identical position that differ.
-    For example, the distances 
+    For example, if we let $d_H$ denote Hamming distance, the distances
     \begin{align*}
-    d(S, R) &= 1\\
-    d(S, T) &= 2\\
-    \text{where}\ 
-    S &= \texttt{abc\textcolor{red}{d}e}\\
+    d_H(S, R) &= 1\\
+    d_H(S, T) &= 2\\
+    \text{where}\
+    S &= \texttt{abcde}\\
     R &= \texttt{abc\textcolor{blue}{f}e}\\
     T &= \texttt{a\textcolor{codegreen}{x}c\textcolor{codegreen}{z}e}
     \end{align*}
@@ -180,7 +192,7 @@
     \begin{center}
     \begin{math}
     \begin{matrix}
-        0 & 1 & 0 & 0 \\ 
+        0 & 1 & 0 & 0 \\
         0 & 0 & 0 & 1 \\
         0 & 1 & 0 & 1 \\
         0 & 1 & 0 & 0
@@ -193,7 +205,7 @@
 
     \begin{center}
     \begin{tabular}{c c c c | c}
-        0 & 1 & 0 & 0 & 1 \\ 
+        0 & 1 & 0 & 0 & 1 \\
         0 & 0 & 0 & 1 & 1 \\
         0 & 1 & 0 & 1 & 0 \\
         0 & 1 & 0 & 0 & 1 \\ \hline
@@ -338,9 +350,11 @@ legend pos=outer north east]
     non-covered bit as an empty square, so the whole codeword is shown in every
     row:
 
+\begin{figure}[h]
 \begin{center}
 \includegraphics{../psfiles/hamming_visualisation.eps}
 \end{center}
+\end{figure}
 
     The script implementing a simple binary Hamming code is as follows:
 
@@ -366,7 +380,32 @@ legend pos=outer north east]
     matrix such that each pair of rows represent a pair of orthogonal vectors.
     Practically, this means that each row has a Hamming distance of at least
     half of its length from each other row. This is a much stronger encoding
-    than the Hamming code, so may be much more
+    than the Hamming code, so may be much more resistant to mutations. However,
+    as a natural side effect of this, Hadamard codes are longer and more sparse.
+
+    Here is the code implementing the basic $2^n$ hadamard matrix generation
+    scheme:
+
+\lstinputlisting[language=Python, caption=Hadamard matrix generation]
+{../src/hadamard_matrix.py}
+
+%TODO talk about sphere packing
+
+%TODO add mindmap
+
+    A visualistion of the Hadamard matrix is provided by the Python script in
+    listing \ref{lst:hadpy}. It displays the matrix as a grid, where each `1' is
+    filled in, like this:
+
+\begin{center}
+\includegraphics[height=0.3\textheight]{../psfiles/hadamard_2.eps}%
+\hfill%
+\includegraphics[height=0.3\textheight]{../psfiles/hadamard_3.eps}%
+\hfill%
+\includegraphics[height=0.3\textheight]{../psfiles/hadamard_4.eps}%
+\hfill%
+\includegraphics[height=0.3\textheight]{../psfiles/hadamard_5.eps}%
+\end{center}
 
     \section{Miscellaneous listings}
 
@@ -387,9 +426,18 @@ print("\n".join(r"    {} \\".format(" & ".join(r"\texttt{{{}}}".format(add_color
             for row in table))
 \end{lstlisting}
 
-\lstinputlisting[language=Postscript, caption=Graphical index coverage program,
+\lstinputlisting[language=Postscript, caption=Hamming index coverage,
                  label={lst:hamps}]
 {../psfiles/hamming_visualisation.ps}
+
+\lstinputlisting[language=Python,
+                 caption=Hadamard visualisation (uses code in \ref{lst:hadps}),
+                 label={lst:hadpy}]
+{../src/generate_ham_vis.py}
+
+\lstinputlisting[language=Postscript, caption=Template for Hadamard graphic,
+                 label={lst:hadps}]
+{../src/hadamard_template.ps}
 
     \section{Source}
 

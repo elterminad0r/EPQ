@@ -1,0 +1,36 @@
+%!PS-Adobe-3.0
+
+% This file is a template used by generate_ham_vis.py
+
+10 dup scale
+
+[
+% The hadamard matrix is inserted here
+$HAD_MATRIX
+]
+{
+    % moves "up" by 1 unit for each row
+    0 1 translate
+    gsave
+    {
+        % moves "across" by 1 unit for each square
+        1 0 translate
+        % if the value of the cell in the matrix is 1
+        1 eq {
+            % draw a black square, by making a "path" between the points
+            % (0, 0), (1, 0), (1, 1), (0, 1) and then filling it
+            newpath
+            0 0 moveto
+            1 0 lineto
+            1 1 lineto
+            0 1 lineto
+            closepath fill
+        } if
+    % Do this for all squares in the row
+    } forall
+    grestore
+% Do this for all rows in the matrix
+} forall
+
+% Display this picture
+showpage

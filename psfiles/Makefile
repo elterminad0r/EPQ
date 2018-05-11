@@ -1,9 +1,16 @@
-.PHONY: view ghost
-view: hamming_visualisation.eps
-	gv hamming_visualisation.eps
+FORCE:
 
-ghost:
-	gs hamming_visualisation.ps
+%.view: %.eps FORCE
+	gv $<
 
-hamming_visualisation.eps: hamming_visualisation.ps
-	ps2eps -f hamming_visualisation.ps
+%.ghost%: %.eps FORCE
+	gs $<
+
+%.eps: %.ps
+	ps2eps -f $<
+
+hadamard_%.ps: %.fake ../src/generate_ham_vis.py
+	python ../src/generate_ham_vis.py $* --dump $@
+
+%.fake:
+	echo fake made target $@
