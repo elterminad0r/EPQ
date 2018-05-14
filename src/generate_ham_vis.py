@@ -1,5 +1,8 @@
 """
 Generates Postscript file that draws a Hadamard Matrix with filled in boxes.
+This is a Python script that uses the other Python program to generate a
+Hadamard matrix, and then inserts it into the premade Postscript template
+"hadamard_template.ps", which knows how to draw it.
 """
 
 # library used to parse the user's arguments. Basically, helps provide an
@@ -8,6 +11,10 @@ import argparse
 
 # Regular Expression library. Is used to process text, in "is_ps_comment"
 import re
+
+# Operating System Path library. Used to find the location of the "template"
+# file.
+import os.path
 
 # re-use the code in the "get_matrix" function
 from hadamard_matrix import get_matrix
@@ -18,8 +25,12 @@ from hadamard_matrix import get_matrix
 def is_ps_comment(line):
     return re.match(r"^\s*%(?:[^!%]|$)", line)
 
+# generates full path of template location
+TEMPLATE_LOCATION = os.path.join(os.path.dirname(__file__),
+                                 "hadamard_template.ps")
+
 # Load the Postscript template to add data to
-with open("hadamard_template.ps", "r") as psfile:
+with open(TEMPLATE_LOCATION, "r") as psfile:
     PS_SOURCE = "".join(line for line in psfile if not is_ps_comment(line))
 
 # function that handles given arguments

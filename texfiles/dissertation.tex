@@ -8,15 +8,25 @@
         \end{tabular}
         }
 
+% so the title can be accessed by fancyhdr (and is automatically correctly
+% spelled etc)
+\makeatletter
+\let\thetitle\@title
+\makeatother
+
 % fonts
 \usepackage[p,osf]{cochineal}
 \usepackage[scale=.95,type1]{cabin}
 \usepackage[cochineal,bigdelims,cmintegrals,vvarbb]{newtxmath}
-\usepackage[zerostyle=c,scaled=.94]{newtxtt}
+% fixed width font with 80 chars per listing line
+\usepackage[scaled=.94]{newtxtt}
 \usepackage[cal=boondoxo]{mathalfa}
 
 % make the document take up more of the page
 \usepackage[margin=1in,headheight=13.6pt]{geometry}
+
+% no paragraph indent
+\usepackage[parfill]{parskip}
 
 % custom document header/footer
 \usepackage{fancyhdr}
@@ -24,7 +34,7 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{The application of noisy-channel coding techniques to DNA barcoding}
+\lhead{\thetitle}
 \rhead{Izaak van Dongen}
 \rfoot{Page \thepage\ of \pageref{LastPage}}
 
@@ -39,28 +49,21 @@
 % \url function and clickable table of contents. no ugly red boxes though
 \usepackage[hidelinks]{hyperref}
 
-% maths symbols and other stuff
-%\usepackage{amsthm}
-%\usepackage{amsmath}
-%\usepackage{amsfonts}
-%\usepackage{amssymb}
-%\usepackage{commath}
+% maths symbols and other stuff (supersedes the ams* packages)
 \usepackage{mathtools}
 
-% bibliography in table of contents, correctly.
+% for better table of contents stuff, providing the \listof* commands and not
+% listing the tables in the table of contents
 \usepackage[nottoc,notlof,notlot]{tocbibind}
 
-% no paragraph indent
-\usepackage[parfill]{parskip}
-
-% more advanced handling of utf8 and fonts
+% more advanced handling of utf8 and fonts or something. apparently good to have
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-% bibliography management
+% bibliography management with square braces for citations
 \usepackage[square]{natbib}
 
-% graphics, like postscript
+% graphics, like eps files and stuff (supersedes graphics)
 \usepackage{graphicx}
 
 % used to horizontally align floats
@@ -69,10 +72,7 @@
 % used for figures
 \usepackage{float}
 
-% code listings
-\usepackage{listings}
-
-% needed for colouring and stuff
+% needed for colouring and stuff (xcolor supersedes color)
 \usepackage{xcolor}
 
 \definecolor{codegreen}{rgb}{ 0,0.6,0}
@@ -149,10 +149,17 @@
     are sections of the code which are preceded by a special character (normally
     \% or \#) that tells the computer to ignore these. The comments should be
     highlighted in a light grey, as shown in listing \ref{lst:commentexample}.
-    They will offer a simplified explanation of what the code does.
+    They will offer a simplified explanation of what the code does. Code will
+    also often have a docstring, which is some text that explains on a larger
+    scale what the program does. These are slightly darker and enclosed in
+    triple-double quotes.
 
 \begin{longlisting}
 \begin{minted}{python}
+"""
+This part is a docstring and explains what all of the code does
+"""
+
 # This part is a comment. It explains what the following line of code does
 def this_is(some: "code") -> {"th": at}:
     does(stuff)
