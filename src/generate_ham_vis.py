@@ -12,9 +12,11 @@ import re
 # re-use the code in the "get_matrix" function
 from hadamard_matrix import get_matrix
 
-# function that determines if a line of code is a comment
+# function that determines if a line of code is a comment.
+# r"^\s*%(?:[^!%]|$)" is a "regular expression" that tells the computer to
+# ignore any line that starts with a single % not followed by ! (a comment)
 def is_ps_comment(line):
-    return re.match(r"^\s*%(?:[^!]|$)", line)
+    return re.match(r"^\s*%(?:[^!%]|$)", line)
 
 # Load the Postscript template to add data to
 with open("hadamard_template.ps", "r") as psfile:
