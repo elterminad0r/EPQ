@@ -1,0 +1,97 @@
+\documentclass[11pt]{article}
+\title{The application of noisy-channel coding techniques to DNA barcoding}
+\author{\begin{tabular}{rl}
+        Name:& Izaak van Dongen\\
+        EP Mentor:& Nicolle Mcnaughton\\
+        Tutor:& Paul Ingham\\
+        Candidate No:&  6659\\
+        \end{tabular}
+        }
+
+% so the title can be accessed by fancyhdr (and is automatically correctly
+% spelled etc)
+\makeatletter
+\let\thetitle\@title
+\makeatother
+
+% fonts
+\usepackage[p,osf]{cochineal}
+\usepackage[scale=.95,type1]{cabin}
+\usepackage[cochineal,bigdelims,cmintegrals,vvarbb]{newtxmath}
+% fixed width font with 80 chars per listing line
+\usepackage[scaled=.94]{newtxtt}
+\usepackage[cal=boondoxo]{mathalfa}
+
+% make the document take up more of the page
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+
+% no paragraph indent
+\usepackage[parfill]{parskip}
+
+% custom document header/footer
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\thetitle}
+\rhead{Izaak van Dongen}
+\rfoot{Page \thepage\ of \pageref{LastPage}}
+
+% pretty table rules and multirow entries
+\usepackage{booktabs}
+\usepackage{multirow}
+
+% plotting mathematical functions (needs version request)
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+
+% \url function and clickable table of contents. no ugly red boxes though
+\usepackage[hidelinks]{hyperref}
+
+% maths symbols and other stuff (supersedes the ams* packages)
+\usepackage{mathtools}
+
+% for better table of contents stuff, providing the \listof* commands and not
+% listing the tables in the table of contents
+\usepackage[nottoc,notlof,notlot]{tocbibind}
+
+% more advanced handling of utf8 and fonts or something. apparently good to have
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% bibliography management with square braces for citations
+\usepackage[square]{natbib}
+
+% graphics, like eps files and stuff (supersedes graphics)
+\usepackage{graphicx}
+
+% used to horizontally align floats
+\usepackage{subfig}
+
+% used for figures
+\usepackage{float}
+
+% needed for colouring and stuff (xcolor supersedes color)
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{ 0,0.6,0}
+
+% listings of code
+\usepackage{minted}
+\setminted{breaklines,
+           breakbytokenanywhere,
+           linenos
+}
+\usemintedstyle{friendly}
+% bigger line numbers
+\renewcommand\theFancyVerbLine{\footnotesize\arabic{FancyVerbLine}}
+
+% that can break across pages while being captioned figures
+\usepackage{caption}
+\newenvironment{longlisting}
+{\addvspace{\baselineskip}\captionsetup{type=listing}}
+{\addvspace{\baselineskip}}
+
+% allow maths to break across pages
+\allowdisplaybreaks
