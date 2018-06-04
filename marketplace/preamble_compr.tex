@@ -1,4 +1,5 @@
 \documentclass[a4paper,11pt]{article}
+\title{Preamble comparison}
 
 % fonts
 \usepackage[p,osf]{cochineal}
@@ -63,17 +64,21 @@
 \allowdisplaybreaks
 
 \begin{document}
+    \maketitle
 
 \begin{longlisting}
 \inputminted{latex}{original_preamble}
 \caption{Original preamble, from commit \texttt{1bc2c47}}
 \end{longlisting}
 
+\begin{figure}[H]
 \begin{center}
 \fbox{
 \includegraphics[height=0.7\textheight]{old_disp3.pdf}
 }
 \end{center}
+\caption{sample page with old preamble}
+\end{figure}
 
 \newpage
 
@@ -82,10 +87,13 @@
 \caption{Updated preamble, from commit \texttt{6c4c392}}
 \end{longlisting}
 
+\begin{figure}[H]
 \begin{center}
 \fbox{
 \includegraphics[height=0.7\textheight]{new_disp6.pdf}
 }
 \end{center}
+\caption{Sample page with new preamble}
+\end{figure}
 
 \end{document}
