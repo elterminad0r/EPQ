@@ -1,0 +1,191 @@
+\documentclass[a4paper,11pt]{article}
+\title{Timescales}
+\author{Izaak van Dongen}
+
+% fonts
+\usepackage[p,osf]{cochineal}
+\usepackage[scale=.95,type1]{cabin}
+\usepackage[cochineal,bigdelims,cmintegrals,vvarbb]{newtxmath}
+% fixed width font with 80 chars per listing line
+\usepackage[scaled=.94]{newtxtt}
+\usepackage[cal=boondoxo]{mathalfa}
+
+% pretty tables
+\usepackage{booktabs}
+\usepackage{longtable}
+
+\usepackage[table]{xcolor}
+
+% make the document take up more of the page
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+
+% no paragraph indent
+\usepackage[parfill]{parskip}
+
+% more advanced handling of utf8 and fonts or something. apparently good to have
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+    \maketitle
+
+    As my project progressed, I sometimes tweaked my timescale to better reflect
+    where the project was going. My timescale was never particularly detailed.
+
+    \section{The original timescale}
+    The very first timescale, from the first couple of weeks. Transcribed from
+    the markdown file \texttt{timescale.md}
+
+    \begin{center}
+    {
+    \renewcommand{\arraystretch}{1.3}
+    \begin{longtable}{c p{0.7\textwidth}}
+    \toprule
+    Month & Vague Ideas \\
+    \midrule
+    December &
+    Research string distance:
+    \begin{enumerate}
+        \item Hamming distance
+        \item Levenshtein distance
+        \item Find some sources
+    \end{enumerate}\\
+    January &
+    Have written about string distances and how these apply to sequences in my
+    dissertation \\
+    February &
+    Have implemented the code to find different distance metrics and apply this
+    to a pool of codes (sieve) \\
+    March &
+    Have done more research on Hamming codes, and have independently generalised
+    to base-4 \\
+    April &
+    Have implemented Hamming codes \\
+    May &
+    Do research on Hadamard codes, gray codes, and polynomial codes \\
+    June &
+    Have implemented these. \\
+    \bottomrule
+    \end{longtable}
+    }
+    \end{center}
+
+    \section{Improvements}
+
+    Developed over Christmas, as I had started my project and gotten a better
+    feel of how it was going to happen. My original scope for the project had
+    been a little ambitious. Again, transcribed from Markdown file.
+
+    \begin{center}
+    {
+    \renewcommand{\arraystretch}{1.3}
+    \begin{longtable}{c p{0.7\textwidth}}
+    \toprule
+    Month & More specific ideas \\
+    \midrule
+    \rowcolor{green} Completed &
+    Start to gain proficiency with \LaTeX, and familiarise myself with the basic
+    literature on error-correcting codes using resources like JSTOR. \\
+    January &
+    Do some research on Hamming codes, trying to find academic sources. Also
+    have a look at how a Hamming code could apply to DNA (base 4). \\
+    February &
+    Start writing some code to implement Hamming encoding. Maybe also write some
+    test plans/ unit tests. If time start writing about Hamming codes in
+    dissertation.  \\
+    March &
+    Research string distance:
+    \begin{enumerate}
+        \item Hamming distance
+        \item Levenshtein distance
+        \item Find some sources
+    \end{enumerate}
+    Have written about string distances and how these apply to sequences in my
+    dissertation \\
+    April &
+    Finish writing up Hamming codes in dissertation. \\
+    May &
+    Do research on Hadamard codes, and try to finish a basic implementation of
+    some type of Hadamard code. \\
+    June &
+    Write up Hadamard codes. Maybe try to do some Hadamard visualisation with
+    Postscript\ldots \\
+    \bottomrule
+    \end{longtable}
+    }
+    \end{center}
+
+    \section{After exams}
+
+    At this point I have a clearer idea of what has been done and what needs to
+    happen. Also, at this point I brought the old timescales over to this
+    document.
+
+    It looks like I have crammed more into the last few months, but really it's
+    just a higher level of detail.
+
+    \begin{center}
+    {
+    \renewcommand{\arraystretch}{1.3}
+    \begin{longtable}{c p{0.7\textwidth}}
+    \toprule
+    Month & Tasks \\
+    \midrule
+    \rowcolor{green} Completed &
+    Start to gain proficiency with \LaTeX, and familiarise myself with the basic
+    literature on error-correcting codes using resources like JSTOR.
+
+    Do some research on Hamming codes, trying to find academic sources. Also
+    have a look at how a Hamming code could apply to DNA (base 4).
+
+    Start writing some code to implement Hamming encoding. Maybe also write some
+    test plans/ unit tests. Writing about Hamming codes in
+    dissertation.
+
+    Have done some research on string distances:
+    \begin{enumerate}
+        \item Hamming distance
+        \item Find some sources
+    \end{enumerate}
+    And written a short section in dissertation.
+
+    Hadamard matrices research - various papers on types of Hadamard matrix and
+    generators.
+
+    Hadamard matrices generator - with the simple $2^n$ method I've managed to
+    implement Hadamard matrices.
+
+    Hadamard visualisation with Postscript! Some very pretty figures
+    representing the matrices. \\
+
+    May &
+    Finish writing up Hamming codes in dissertation - last couple of bits
+    regarding applications/limitations.
+
+    If time, look at the Levenshtein distance.
+
+    \\
+
+
+    June &
+    Also, start trying to write or at least prototype a Hadamard decoder
+    (looking at generator matrices/linear algebra, or string distances). May
+    need to fully implement string distance programs.
+
+    See if I can implement Levenshtein distance, and if it will help with
+    Hadamard decoder. \\
+
+    July &
+    Fully write up Hadamard matrices/codes, and the generator I'm using, with
+    some recursive/iterative matrix notation.
+
+    Make sure the dissertation is absolutely ready to go, double check all
+    spelling, get people to proofread.
+    If I have any more time I can look for some more sources for
+    corroborration/extra citation. \\
+    \bottomrule
+    \end{longtable}
+    }
+    \end{center}
+
+\end{document}

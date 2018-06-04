@@ -2,11 +2,16 @@
 \title{Source tracker}
 \author{Izaak van Dongen}
 
-\usepackage{fullpage}
+% fonts
+\usepackage[p,osf]{cochineal}
+\usepackage[scale=.95,type1]{cabin}
+\usepackage[cochineal,bigdelims,cmintegrals,vvarbb]{newtxmath}
+% fixed width font with 80 chars per listing line
+\usepackage[scaled=.94]{newtxtt}
+\usepackage[cal=boondoxo]{mathalfa}
 
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{commath}
+% make the document take up more of the page
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
 
 \usepackage{longtable}
 \usepackage{booktabs}
@@ -17,41 +22,6 @@
 \usepackage[T1]{fontenc}
 
 \usepackage[square]{natbib}
-
-\usepackage{graphicx}
-
-\graphicspath{ {images/} }
-
-\usepackage{listings}
-\usepackage{color}
-
-\definecolor{codegreen}{rgb}{ 0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\footnotesize,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    numbers=left,
-    numbersep=5pt,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2
-}
-
-\lstset{style=mystyle}
-
-\lstset{
-    literate={~} {$\sim$}{1}
-}
 
 \begin{document}
     \maketitle
@@ -64,11 +34,20 @@
     sources are mathematical in nature. This means that really any source is
     either ``wrong'', or ``right'' about a theorem proposed by that source.
     This is pretty different from academic literature in more empirical fields,
-    where cross-referencing is crucial.  Overwhelmingly, peer-reviewed maths
-    papers older than a couple of years will be correct, and my most important
-    sources are all decades old. This binary nature of mathematics also means
-    that most theorems won't really be produced in more than one paper, except
-    in some cases where an alternative proof is offered.
+    where cross-referencing is crucial.
+
+    Overwhelmingly, peer-reviewed maths papers older than a couple of years will
+    be correct, and my most important sources are all decades old. This binary
+    nature of mathematics also means that most theorems won't really be produced
+    in more than one paper, except in some cases where an alternative proof is
+    offered.
+
+    I would also argue that I have intrinsically been doing lots of research
+    while writing my code. I have had to research what does and doesn't work,
+    and write test plans to verify correct behaviour. I have also had to adapt
+    what I've found in papers or online to work within the constraints of the
+    programming language or my project. I have even written programs to simulate
+    biological processes to verify the correct behaviour of my core programs.
 
     \section{Evaluation}
 
@@ -171,7 +150,7 @@
     Hadamard matrices. I didn't end up using any of these but it provided a
     useful further background around Hadamard constructions, and could be
     compared/contrasted with \citep*{HadamardSearch1963GolombBaumert} & 
-    
+
     It's a trustworthy paper from a trustworthy journal and trustworthy
     authors. \\
 
@@ -189,13 +168,40 @@
 
     Lifted polynomials over ${F}_{16}$ and their applications to dna codes \citep*{PolynomialDNA2013OztasSiap} & 
 
+    This is a paper about a highly specific and even more advanced class of
+    codes. It involved a lot of field theory, so for someone with an A-level
+    knowledge of maths, will require a lot of further reading. However it does
+    directly talk about applications of codes to DNA, which is useful to
+    validate that this is a field with some merit. &
+
+    It's a very reputable and technically accurate paper, but again is
+    incredibly dense and required much more knowledge than I have, so I've not
+    been able to effectively leverage it as a citation.
+
     \\
 
     Codes, not ciphers \citep*{CodesCiphers1010Baylis} &
 
+    This is an article providing description and intruction of coding theory,
+    and contrasting that with cryptography. It is aimed at a `school \ldots
+    level'. This means that it was useful to gain a quick overview of what
+    coding theory is, but didn't really help with any major lifting. &
+
+    It's from a very reputable paper, and is also easily accessible. This makes
+    it a good, reliable resource for introduction to the topic.
+
     \\
 
     Error correcting codes: Practical origins and mathematical implications \citep*{CodesOrigins1978Pless} &
+
+    This is a very short little paper, which provides a short history of the
+    concept of codes. This makes it quite a special little paper, and quite nice
+    to have read to gain a better contextual understanding of the field.
+    However, again, there's not much to cite. &
+
+    Again, from a highly trustworthy paper and an established mathematician.
+    Occasionally it uses some pretty advanced mathematical analogies, but is
+    certainly a very solid source.
 
     \\
 
@@ -215,15 +221,69 @@
 
     \\
 
-    The degeneracy of the genetic code and Hadamard matrices. \citep*{DegeneracyHadamard2008Petoukhov}
+    The degeneracy of the genetic code and Hadamard matrices.  \citep*{DegeneracyHadamard2008Petoukhov} &
+
+    This is a great paper talking about how Hadamard matrices can be applied to
+    and modelled against genetic code. The really cool thing is that this is a
+    paper from a biomechanical perspective, rather than a mathematician's. This
+    highlights the truly awesome thing about working at an intersection of
+    fields. Aside from that, used for some backing up of the application of
+    Hadamard matrices. &
+
+    This paper is a little wonky in terms of academic merit - it's not published
+    in any well known journal, which might make it seem somewhat questionable.
+    However, it is mathematical in nature, and is mathematically sound. This
+    paper would have nothing to gain from misleading anyone anywa.
 
     \\
 
-    Construction of multilevel Hadamard matrices with small alphabet \citep*{MultilevelConstruction2008TrinhFan}
+    Construction of multilevel Hadamard matrices with small alphabet \citep*{MultilevelConstruction2008TrinhFan} &
+
+    This is a very interesting topic, as it potentially deals with the major
+    limitation of Hadamard matrices - them having an alphabet of 2. Being able
+    to construct a Hadamard matrix with different alphabet (ideally 4) would be
+    incredibly useful. However, this paper doesn't quite go so far as to
+    explicitly guide how that could be possible, so it's just another citation
+    for theoretical extensions to this project. &
+
+    It is a perfectly sound paper. Only quibble is that it's a little hard to
+    gain access to.
 
     \\
 
-    Decoding the hamming code \citep*{DecodingHamming2006Eherenborg}
+    Decoding the hamming code \citep*{DecodingHamming2006Eherenborg} &
+
+    This is a tiny article offering a quick introduction to coding theory and
+    Hamming codes. It contextualises the Hamming code in an interesting new way
+    that I quite like and helped me really click with what they could be used
+    for and what they were, so I used this source as an excellent other take on
+    Hamming codes. &
+
+    Again, despite not being very academic in and of itself it is from a very
+    prestigious university and organisation, and can't really be faulted in any
+    way.
+
+    \\
+
+    PEP 257: Docstring conventions \citep*{PEPDocstrings2014Goodger} &
+
+    This is part of the Python style guide, used to back up some of my
+    assertions about coding practices in my Definitions section. &
+
+    Of course, it isn't remotely academic and verges on being an appeal to
+    authority, but it is a well respected style guide with some explicit
+    reasoning behing the decisions being laid out.
+
+    \\
+
+    WHAT IS CRISPR-CAS9? \citep*{CRISPRDailymail} &
+
+    This is a short ``article'' offering a brief introduction of the principles
+    of CRISPR-CAS9. The best part is probably a diagram produced by MIT. It's
+    not particularly informative aside from the most general, basic sense. &
+
+    It's literally not from a scientific publication and has no academic merit.
+    This is a bad source and does not prove or reinforce anything.
 
     \\
 
@@ -232,7 +292,8 @@
     }
     \end{center}
 
-    \bibliographystyle{agsm}
-    \bibliography{sources}
+\nocite{*}
+\bibliographystyle{agsm}
+\bibliography{sources}
 
 \end{document}

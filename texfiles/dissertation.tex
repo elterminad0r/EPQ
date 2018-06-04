@@ -1,9 +1,9 @@
-\documentclass[11pt]{article}
+\documentclass[a4paper,11pt]{article}
 \title{The application of noisy-channel coding techniques to DNA barcoding}
 \author{\begin{tabular}{rl}
-        Name:& Izaak van Dongen\\
-        EP Mentor:& Nicolle Mcnaughton\\
-        Tutor:& Paul Ingham\\
+                Name:& Izaak van Dongen\\
+           EP Mentor:& Nicolle Mcnaughton\\
+               Tutor:& Paul Ingham\\
         Candidate No:&  6659\\
         \end{tabular}
         }
@@ -51,6 +51,31 @@
 
 % maths symbols and other stuff (supersedes the ams* packages)
 \usepackage{mathtools}
+
+% For framing definitions
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{definition}{
+freelance,
+before=\par\vspace{2\bigskipamount}\noindent,
+after=\par\bigskip,
+frame code={
+  \node[
+  anchor=south west,
+  inner xsep=8pt,
+  xshift=8pt,
+  rounded corners=5pt,
+  font=\bfseries\color{white},
+  fill=gray] at (frame.north west) (tit) {\strut Definition:};
+  \draw[
+  line width=3pt,
+  rounded corners=5pt,gray
+  ] (tit.west) -| (frame.south west) -- ([xshift=15pt]frame.south west);
+},
+interior code={},
+top=2pt
+}
 
 % for better table of contents stuff, providing the \listof* commands and not
 % listing the tables in the table of contents
@@ -103,9 +128,173 @@
     \listoffigures
     \listoftables
 
+%TODO add some wikipedia citations
+
+    \section[Definitions and conventions]{Definitions \footnote{Please note that
+    these definitions have been somewhat simplified. It would be impractical and
+    outside of the scope of this dissertation to deliver a full briefing of
+    the field of computer science.} and conventions}
+
+    My project will involve a lot of programming. Because of the tendency for
+    programmers to use field-specific vocabulary/jargon, I have provided the
+    following definitions of various words I might use when talking about
+    programs I write.
+
+    \begin{definition}
+    A \textbf{program} or \textbf{script}, but not to be
+    confused with ) is a series of
+    instructions that the computer follows in order to complete a task. They are
+    normally created and shown in the form of text. Roughly speaking, each line
+    of text corresponds to one instruction for the computer to follow. A program
+    in this form is written in a programming language.
+    \end{definition}
+
+    \begin{definition}
+    A program normally also permits \textbf{input}, \textbf{arguments} or
+    \textbf{parameters}. These allow a user of the program to feed it some data
+    or starting instructions. This is extremely useful as it means that the
+    program doesn't just do the same thing each time, but performs its task on
+    the data or information requested by the user.
+    \end{definition}
+
+    \begin{definition}
+    The word \textbf{code} sits kind of annoyingly here. Code may both refer to
+    programming instructions or systems of symbols representing data. When
+    referring to programs, code is an uncountable noun, eg ``I wrote some
+    code''. When referring to symbolic systems, it \textit{is} countable, so you
+    might say ``I generated some code\textit{s}, using the code I wrote earlier.
+    \end{definition}
+
+    \begin{definition}
+    The programs I produce will be CLI-based. That is, they will use a
+    \textbf{Command Line interface}. This means that the user interacts with the
+    program solely through text. Most applications nowadays use a graphical
+    interface, but a CLI has many benefits, including but not limited to being
+    easier to develop, being faster due to less overhead, CLI programs can
+    interact with each other more easily as it provides a standard interface,
+    and they are more portable. The downside of course is that it required more
+    expertise to use.
+
+    An example of how I use the CLI to interact with a program is given in
+    Figure \ref{fig:cliusage}.
+    \end{definition}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{../images/cli_usage.png}
+\end{center}
+\caption{Example of a CLI interface}\label{fig:cliusage}
+\end{figure}
+
+    \begin{definition}
+    A \textbf{programming language} is a defined language that both the computer
+    and the programmer understand.  The programming language I'm using for this
+    dissertation is Python. To produce some of by graphics, I'm using
+    Postscript. On a more meta-level this dissertation itself has been produced
+    with \LaTeX, and I have worked on it on a GNU/Linux system, making use of
+    the shell language Zsh, and other tools like the language `Make'. None of
+    these are particularly important to understanding the outcome or goals of
+    this dissertation.
+    \end{definition}
+
+    \begin{definition}
+    A \textbf{comment} is a section of a program which has been specially marked
+    to be ignored by the computer. These are used by humans to add documentation
+    or clarification to code, and are written in natural language.  In the two
+    languages I'm using, comments are marked by a preceding \% or \#.
+    \end{definition}
+
+    \begin{definition}
+    A \textbf{docstring} is also text within a program. It is similar to a
+    comment, but there are some technical and semantic differences. Most
+    importantly, a docstring is intended to describe the function of some unit
+    of the code. This might be one function, one class, or of the whole program.
+    A docstring is enclosed by three consecutive double quotes:
+    \mintinline{python}|"""|. By convention, docstrings are written in the
+    imperative \citep*{PEPDocstrings2014Goodger}.
+    \end{definition}
+
+    \begin{definition}
+    A \textbf{function} is a part of the code that acts out one specific task.
+    These are useful as they can be reused, making code more maintainable (only
+    one part must be modified), shorter and easier to test. Functions in Python
+    are generally preceded by \mintinline{python}|def
+    function_name(parameters):|.  Here, `parameters` defines which inputs the
+    function expects. This allows the function to perform the same task on
+    different data. All of the code within the function will then be indented
+    one level.
+    \end{definition}
+
+    \begin{definition}
+    One program can reuse a function from another program. To do this, the
+    requesting program must \textbf{import} the function from the defining
+    program. Most language also have a standard library of useful functions, so
+    some imports will be from the language itself, rather than another file
+    within this EP.
+    \end{definition}
+
+    \begin{definition}
+    A \textbf{unit test} is a way to test that a program is functioning
+    correctly. It works by running a number of tests against each \textit{unit}
+    of code. These units are normally functions. By making sure that each
+    function works, we can be reasonably confident in how robust our code is. A
+    unit test is itself also a program.
+    \end{definition}
+
+    For my EP I have written several programs. Almost all of these are included
+    within the dissertation or some other component as code listings.. When
+    appropriate, I have added comments and docstrings to these, to explain
+    (commentate) their function.
+
+    In the code listings provided, comments should be highlighted
+    \mintinline{python}|#like this|, and docstrings
+    \mintinline{python}|"""like this"""|. All of this is demonstrated in listing
+    \ref{lst:commentexample}.
+
+\begin{longlisting}
+\begin{minted}{python}
+#!/usr/bin/env python3
+#^ This part is a shebang. It tells the computer what language I'm using
+
+"""
+This part is a docstring and explains what all of the code does
+"""
+
+import pprint
+import json
+
+def this_is(some: "code") -> {"th": at}:
+    """
+    This is another docstring, but in a function, to describe what the function
+    does.
+    """
+    for x in y:
+        pprint(json.loads('{"a": 2}'))
+        # This part is a comment. It explains what the following line of code
+        # does, because it is particularly interesting/complicated.
+        does(stuff)
+
+        this is {a: really(long-line(of + code, [that, goes], off(the_edge), resulting in "a little arrow"}
+
+# <- this is a comment pointing out the line numbers
+\end{minted}
+\caption{Example of a code listing with comments}\label{lst:commentexample}
+\end{longlisting}
+
     \section{Introduction}
     The premise of this project is to investigate the different types of
-    error-correcting codes, and how these might be applied to DNA barcoding.
+    error-correcting codes, and how these might be applied to DNA barcoding. DNA
+    barcoding is the assignment of `barcodes' to substrands of synthesised DNA
+    for the purposes of identification. This means that in future, when you look
+    at that same substrand, that should let you `ID' the whole DNA strand.
+    However, as we all know, DNA is subject to mutation, so an ideal barcode
+    should still be identifiable after some number of mutations. This is where
+    error-correcting codes come in.
+
+%TODO maybe some citations
+% also
+%- crispr/cas9 citations
+
     The challenge in this comes from the fact that most error-correcting codes
     are designed in base-2 (binary) whereas DNA strings are fundamentally
     base-4 (quaternary). The applicability of this project is that in
@@ -113,60 +302,29 @@
     using a subsection of the sample (a barcode). These could just be linearly
     assigned codes, but this would leave them very susceptible to mutation.
 
-    Here is an example: say that we're given a barcode of length four, to
-    encode two different samples. If we worked methodically up from the bottom
-    (using the ordering ACGT - orderings will be discussed further later on) we
-    might end up with the codes AAAA and AAAC. However, either string would
-    only require a single mutation (where we say a mutation is the changing of
-    a single base) to become identical to the other one. Therefore, in this
-    case, it would clearly be far more optimal to make a choice like, for
-    example, AAAA and CCCC.
+    Here is an example: say that we're given a barcode of length four, to encode
+    two different samples. If we worked methodically up from the bottom (using
+    the ordering \texttt{ACGT} - orderings will be discussed further later on)
+    we might end up with the codes \texttt{AAAA} and \texttt{AAAC}. However,
+    either string would only require a single mutation (where we say a mutation
+    is the changing of a single base) to become identical to the other one.
+    Therefore, in this case, it would clearly be far more optimal to make a
+    choice like, for example, \texttt{AAAA} and \texttt{CCCC} (although this
+    leaves you with only two different codes).
 
-    There have been a few assumptions and glossed over definitions here:
-
-    \begin{itemize}
-        \item What constitutes a mutation?
-        \item What is the best way to represent DNA mathematically?
-    \end{itemize}
+    We have kind of glossed over how we in this case formally represent DNA and
+    mutations, but we will get to that.
 
     There are also a number of parameters to the problem, and as they change
-    the problem becomes very much nontrivial:
+    the problem becomes increasingly hard:
 
     \begin{itemize}
     \item What if the barcode size changes?
     \item What if we want more codes than two?
-    \item What if rather than number of codes and barcode size, the parameters
-          are set to barcode size and maximum number of mutations that can
-          occur?
+    \item What if we anticipate many mutations?
     \end{itemize}
 
     All of these will be further explored in this dissertation.
-
-    Note that I have written various ``scripts'', or ``programs''. These are
-    basically a series of instructions written in a certain programming
-    ``language'' that tell the computer what to do. When these are included the
-    the dissertation, they will generally also have ``comments'' in them. These
-    are sections of the code which are preceded by a special character (normally
-    \% or \#) that tells the computer to ignore these. The comments should be
-    highlighted in a light grey, as shown in listing \ref{lst:commentexample}.
-    They will offer a simplified explanation of what the code does. Code will
-    also often have a docstring, which is some text that explains on a larger
-    scale what the program does. These are slightly darker and enclosed in
-    triple-double quotes.
-
-\begin{longlisting}
-\begin{minted}{python}
-"""
-This part is a docstring and explains what all of the code does
-"""
-
-# This part is a comment. It explains what the following line of code does
-def this_is(some: "code") -> {"th": at}:
-    does(stuff)
-# <- this is a comment pointing out the line numbers
-\end{minted}
-\caption{Example of a code listing with a comment}\label{lst:commentexample}
-\end{longlisting}
 
     \section{The Hamming distance}
 
@@ -199,19 +357,23 @@ def this_is(some: "code") -> {"th": at}:
 
     The insertion of ``parity bits'' is a common practice in basic encoding.
     Parity refers to the ``oddness'' or ``evenness'' of some data. Commonly,
-    this is determined by the sum of the data modulo 2. For example, ``00101''
-    results in a parity bit of 0, because the sum of all the bits is 2, which
-    has a remainder of 0 when divided by 2 (is equal to 0 mod 2).
+    this is determined by the sum of the data modulo 2. For example, the data
+    bits ``00101'' would result in a parity bit of 0, because the sum of all the
+    bits is 2, which has a remainder of 0 when divided by 2 (ie, is equal to 0
+    mod 2).
+
+% correct this with regard to odd parity
 
     A simple but inefficient parity encoding scheme is a column/row wise
-    encoding. Take the slightly contrived data string ``0100000101010100''.
+    encoding. Take the slightly contrived data string
+    ``\texttt{0100000101010100}''.
     This is very tangentially related to DNA - it's the 8-bit ASCII
     representation of the string ``AT'', generated by the Python:
     \mintinline{python}|"". join(bin(ord(c))[2:].rjust(8, "0") for c in "AT")|
     \footnote{Sometimes I will include some `meta-code' that was used to
-    generate a table or other data. This won't be as extensively commented as I
-    don't consider these core programs - they are simply faster to produce than
-    writing the table out by hand.}.
+    generate a table or other data. Especially the smaller samples won't be as
+    extensively commented as I don't consider these core programs - they are
+    a kind of shortcut from writing the table out by hand.}.
 
 %TODO cite ASCII
 
@@ -320,7 +482,7 @@ legend pos=outer north east]
     The Hamming code instead places a parity bit at each index that is a power
     of two, where we number indices starting from 1. Therefore, our previous
     data string gains parity bits in this configuration:
-    \textcolor{red}{10}0\textcolor{red}{1}100\textcolor{red}{0}0001010\textcolor{red}{0}10100
+    \texttt{\textcolor{red}{10}0\textcolor{red}{1}100\textcolor{red}{0}0001010\textcolor{red}{0}10100}
     (the 1st, 2nd, 4th, 8th and 16th bits are used for parity).
 
     The way the parity ``coverage'' works is shown in table
@@ -328,7 +490,7 @@ legend pos=outer north east]
     because that is the longest encodable string with only five parity bits
     (afterwards, we have to add a parity bit at 32). Of course, a shorter code
     word can always also be encoded by just acting as if each index that is out
-    of range is a 0.
+    of range stores a 0.
 
 \begin{table}[H]
 \begin{center}
@@ -367,7 +529,8 @@ legend pos=outer north east]
     \toprule
     Parity index & \texttt{0000\textcolor{blue}{1}} & \texttt{000\textcolor{blue}{1}0} & \texttt{00\textcolor{blue}{1}00} & \texttt{0\textcolor{blue}{1}000} & \texttt{\textcolor{blue}{1}0000} \\
     \midrule
-    \multirow{14}{*}{Coverage} & \texttt{0001\textcolor{blue}{1}} & \texttt{000\textcolor{blue}{1}1} & \texttt{00\textcolor{blue}{1}01} & \texttt{0\textcolor{blue}{1}001} & \texttt{\textcolor{blue}{1}0001} \\
+    \multirow{14}{*}{Coverage}
+    & \texttt{0001\textcolor{blue}{1}} & \texttt{000\textcolor{blue}{1}1} & \texttt{00\textcolor{blue}{1}01} & \texttt{0\textcolor{blue}{1}001} & \texttt{\textcolor{blue}{1}0001} \\
     & \texttt{0010\textcolor{blue}{1}} & \texttt{001\textcolor{blue}{1}0} & \texttt{00\textcolor{blue}{1}10} & \texttt{0\textcolor{blue}{1}010} & \texttt{\textcolor{blue}{1}0010} \\
     & \texttt{0011\textcolor{blue}{1}} & \texttt{001\textcolor{blue}{1}1} & \texttt{00\textcolor{blue}{1}11} & \texttt{0\textcolor{blue}{1}011} & \texttt{\textcolor{blue}{1}0011} \\
     & \texttt{0100\textcolor{blue}{1}} & \texttt{010\textcolor{blue}{1}0} & \texttt{01\textcolor{blue}{1}00} & \texttt{0\textcolor{blue}{1}100} & \texttt{\textcolor{blue}{1}0100} \\
@@ -399,25 +562,46 @@ legend pos=outer north east]
 \caption{Index coverage of Hamming parity bits}\label{fig:hamming}
 \end{figure}
 
-    The script implementing a simple binary Hamming code is as follows:
+    Now, when decoding a Hamming-encoded message, you check each parity bit for
+    errors, as normal. You then add the index of each parity bit that shows an
+    error to find the index of the corrupted bit. This bit can then be flipped.
+    This can only correct one error, but it is a very effective way to do so -
+    in fact, if you only want to correct one error, the Hamming code is optimal.
+
+%todo cite here
+
+    Of course, the Hamming code is not explicitly a way to generate barcodes -
+    it is rather an encoding. However, error-correcting encodings can simply be
+    applied to all possible strings to generate a set of barcodes. As we are
+    using binary for now, you could generate the code corresponding to each of
+    the 16 binary strings from \texttt{0000} to \texttt{1111}. This gives you 16
+    barcodes of length 7 each, which can be decoded to retrieve the unique
+    identifier from 0 to 15 that was associated with the DNA.
+
+    Listing \ref{lst:hammingbin} shows the program that implements a binary
+    Hamming encoding. It is tested by the code in listing
+    \ref{lst:testhammingbin}.
 
 \begin{longlisting}
-\inputminted{python}{../src/binary_hamming.py}
-\caption{Binary Hamming code in Python}
-\end{longlisting}
-
-    This code is accompanied by the following testing scheme:
-
-\begin{longlisting}
-\inputminted{python}{../src/test_binary_hamming.py}
-\caption{binary\_hamming unit tests}
+\inputminted{python}{../src/encode_hamming.py}
+\caption{Binary Hamming code in Python}\label{lst:hammingbin}
 \end{longlisting}
 
     \section{Adapting the Hamming code}
 
     Unfortunately, this all only operates on binary data, as this is more of a
-    `fundamental' base.. As is, this is of no use because DNA strings are
+    `fundamental' base. As is, this is of no use because DNA strings are
     fundamentally base-4.
+
+    However, we are quite fortunate in that 4 is a power of 2. This means that
+    we can directly translate a base-4 string to binary, in the case of DNA
+    perhaps by mapping \texttt{ACGT} to \texttt{00 01 10 11}.
+
+    This specific ordering is quite useful as each base pair A-T and C-G is a
+    set of additive inverses mod 4, or ``number bonds to 4''.
+
+    In any case, by writing a short program to perform this mapping, it is quite
+    trivially done.
 
     \section{The Hadamard code}
 
@@ -448,15 +632,12 @@ legend pos=outer north east]
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[height=0.3\textheight]{../psfiles/hadamard_2.eps}%
-\hfill%
-\includegraphics[height=0.3\textheight]{../psfiles/hadamard_3.eps}%
-\hfill%
-\includegraphics[height=0.3\textheight]{../psfiles/hadamard_4.eps}%
-\hfill%
-\includegraphics[height=0.3\textheight]{../psfiles/hadamard_5.eps}%
+\includegraphics[height=0.3\textheight]{../psfiles/hadamard_2.eps}
+\includegraphics[height=0.3\textheight]{../psfiles/hadamard_3.eps}
+\includegraphics[height=0.3\textheight]{../psfiles/hadamard_4.eps}
+\includegraphics[height=0.3\textheight]{../psfiles/hadamard_5.eps}
 \end{center}
-\caption{Visualisation of ``$2^n$'' Hadamard matrices}\label{fig:hadvis}
+\caption{Visualisations of ``$2^n$'' Hadamard matrices}\label{fig:hadvis}
 \end{figure}
 
     \section{Unit tests}
@@ -468,11 +649,21 @@ legend pos=outer north east]
     expect functions to behave.
 
 \begin{longlisting}
-\inputminted{python}{../src/test_binary_hamming.py}
-\caption{Unit tests for binary\_hamming}
+\inputminted{python}{../src/test_encode_hamming.py}
+\caption{Unit tests for encode\_hamming}\label{lst:testhammingbin}
+\end{longlisting}
+
+\begin{longlisting}
+\inputminted{python}{../src/test_hadamard_matrix.py}
+\caption{Unit tests for hadamard\_matrix}\label{lst:testhadamardmat}
 \end{longlisting}
 
     \section{Miscellaneous listings}
+
+    Below are all the listings that I don't consider to be important to the
+    DNA barcoding part of my dissertation, but have still included as it is
+    material that I have produced for my EP, and illustrate some of the work
+    that has gone into the production of the actual dissertation.
 
 \begin{longlisting}
 \begin{minted}{python}
@@ -518,6 +709,9 @@ print("\n".join(r"    {} \\".format(" & ".join(r"\texttt{{{}}}".format(add_color
 
     All code and source \TeX/\LaTeX{} files can be found at
     \url{https://github.com/elterminad0r/EPQ}.
+
+    Unless stated otherwise, all work has been produced by me, including
+    graphics, and source code.
 
 %TODO classifications of codes by number of correctable errors
 

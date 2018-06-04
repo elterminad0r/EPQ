@@ -2,11 +2,16 @@
 \title{EP diary}
 \author{Izaak van Dongen}
 
-\usepackage{fullpage}
+% fonts
+\usepackage[p,osf]{cochineal}
+\usepackage[scale=.95,type1]{cabin}
+\usepackage[cochineal,bigdelims,cmintegrals,vvarbb]{newtxmath}
+% fixed width font with 80 chars per listing line
+\usepackage[scaled=.94]{newtxtt}
+\usepackage[cal=boondoxo]{mathalfa}
 
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{commath}
+% make the document take up more of the page
+\usepackage[margin=0.3in,headheight=13.6pt]{geometry}
 
 \usepackage{longtable}
 \usepackage{booktabs}
@@ -15,43 +20,6 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
-\usepackage[square]{natbib}
-
-\usepackage{graphicx}
-
-\graphicspath{ {images/} }
-
-\usepackage{listings}
-\usepackage{color}
-
-\definecolor{codegreen}{rgb}{ 0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\footnotesize,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    numbers=left,
-    numbersep=5pt,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2
-}
-
-\lstset{style=mystyle}
-
-\lstset{
-    literate={~} {$\sim$}{1}
-}
 
 \begin{document}
     \maketitle
@@ -131,6 +99,17 @@
     &
 
     Start to implement the binary data formats and algorithms &
+
+    \\ 2017-12-30 &
+
+    I also edited my timescale, to reflect what I think is a more realistic view
+    of what will happen and when it will happen. &
+
+    It can be tricky to estimate how long tasks will take, and I think I
+    especially get easily distracted if I'm working on something I find
+    interesting. &
+
+    Probably write some more code.
 
     \\ 2018-1-4 &
 
@@ -340,45 +319,170 @@
 
     \\ 2018-3-22 &
 
-    We did the peer review
+    We did the peer review in class, where we each assessed each other's work
+    wrt AOs. &
+
+    It was a bit of a challenge to immerse yourself in someone else's project,
+    and also difficult to judge how to apply AOs (not too harshly, not too
+    nicely). The feedback I received was a little lacklustre. &
+
+    I should take note of the feedback I received and respond to it/ work around
+    it.
 
     \\ 2018-3-25 &
 
     I spent some time writing my dissertation, focusing on the explanation
-    and visualisation of the Hamming distance, and parity.
+    and visualisation of the Hamming distance, and parity. &
+
+    I spent some time thinking about good ways to communicate visually and in
+    words the principles behind the Hamming distance. &
+
+    It would be good to produce some graphics to illustrate parity
 
     \\ 2018-3-29 &
 
     I worked on explaining the idea of parity and produced a sample row/column
-    parity encoding
+    parity encoding &
+
+    I had some trouble with including the graphic I had made in my dissertation,
+    but eventually I figured it out. &
+
+    While of course relaxing over half term, I think I should also do some more
+    programming.
 
     \\ 2018-4-8 &
 
-    After installing my new operating system, I successfully moved my project
-    over to it. This was made very easy due to my usage of git as a versioning
-    system. I also had to install the whole \LaTeX toolchain, but this went off
-    without a hitch.
+    After installing my new operating system over half term, I successfully
+    moved my project over to it. This was made very easy due to my usage of git
+    as a versioning system. I also had to install the whole \LaTeX toolchain,
+    but this went off without a hitch.
+
+    \\ 2018-4-8 &
+
+    Having succesfully migrated, I started work on the Hamming decoder &
+
+    I had several bugs to do with indexing - I got a lot of off-by-one errors. I
+    also haven't fully tested it yet &
+
+    I should write some unit tests &
 
     \\ 2018-4-12 &
 
     I re-read the specification for an EPQ and saw that I needed to include some
-    student information (candidate no., etc), and then added this.
+    student information (candidate no., etc), and then added this. &
+
+    It was easy enough to put it, but I wanted all the information to line up
+    nicely as well &
+
+    I should probably write some more actual bulk of the dissertation 
 
     \\ 2018-4-19 &
 
     I wrote a bit about complexity and asymptotic complexity, and produced a
-    graph of $\sqrt{x}$ vs $\log_2 x$
+    graph of $\sqrt{x}$ vs $\log_2 x$ &
+
+    Graphing things in \LaTeX is apparently very complicated. I ended up
+    producing something worthwhile with pgfplots. &
+
+    I should get a move on with quaternary Hamming stuff.
 
     \\ 2018-4-26 &
 
     After finding a bug in the Hamming implementation, I spent some time
-    debugging and writing more tests.
+    debugging and writing more tests. &
 
-    \\
+    This bug was quite tiresome to find due to the size of my code base. &
+
+    I should definitely be writing more unit tests.
 
     \\ 2018-5-4 &
 
-    Postscript graphics hamming
+    I produced a graphic in Postscript to show how Hamming parity coverage
+    works. &
+
+    Again had some trouble but eventually figure out how to use includegraphic
+    together with a figure and graphicx. &
+
+    I'm starting to run out of code I've written to write about, so definitely
+    more programming after exams.
+
+    \\ 2018-5-28 &
+
+    I have totally changed my preamble, so the entire look and feel is much
+    different, and it's less instantly recognizable as a basic \LaTeX\ article. &
+
+    I had some trouble with font installation and location, but got there in the
+    end. &
+
+    I could write something about how this shows my progress in skill with
+    \LaTeX. Also get cracking with coding.
+
+    \\ 2018-5-29 &
+
+    I finished off the Hamming decoder, adding compatibility with generic bases
+    and writing tests for it, and wrote some of the corresponding section of the
+    dissertation &
+
+    There were several nasty bugs with defaults and indices, and just an overall
+    bad approach to parsing arguments. However, as I have pulled through my
+    whole code base should be more maintainable now. &
+
+    I should also have a go at writing direct conversion between binary and
+    quaternary, and maybe some helper mutation/verification scripts.
+
+    \\ 2018-5-30 &
+
+    I wrote two programs: one simulating mutation in input data, and one
+    verifying the integrity of input data. This was very useful as it lets me
+    "trial" my program without wasting any bioinformaticians' money. &
+
+    I had to think a bit about the design of the mutation simulator, as it can
+    be quite intricate to simulate a biological process in silicon hardware. &
+
+    Should write a hadamard decoder, and with that probably some string distance
+    utils.
+
+    \\ 2018-5-31 &
+
+    I started work on writing string distance utils, with a bit of research on
+    Hamming vs Levenshtein. &
+
+    It's apparently actually quite difficult to do efficiently. I will keep
+    working but maybe also think of some other options.
+
+    \\ 2018-6-1 &
+
+    I realised that I would probably need a lot more explanation of what the
+    code all does so I started writing documentation and comments in earnest. I
+    also added a little preamble to my dissertation talking about comment
+    conventions. &
+
+    Had some trouble deciding what kind of format/tone/expertise to use in my
+    comments. &
+
+    I should probably keep doing this and think about accessibility to examiners
+    elsewhere too.
+
+    \\ 2018-6-2 &
+
+    I wrote some more documentation, and also added some definitions for
+    frequently used computing jargon to the preamble of my document. I think
+    this will be good for the readability of the whole affair. &
+
+    I wasn't entirely sure how best to format definitions, but I found a good
+    solution online. &
+
+    Make sure all of my paperwork is up to date and on OneDrive &
+
+    \\ 2018-6-4 &
+
+    I got my paperwork on OneDrive\ldots &
+
+    &
+
+    I should neaten up my mindmap and notes
+
+    \\
 
     \bottomrule
     \end{longtable}
