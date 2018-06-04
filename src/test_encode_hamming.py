@@ -1,5 +1,7 @@
+#!/usr/bin/env python3
+
 """
-Unit tests for binary_hamming.py.
+Unit tests for encode_hamming.py.
 
 This is a testing program, that runs a series of test cases to verify that my
 code works.
@@ -7,7 +9,7 @@ code works.
 
 import unittest
 
-from binary_hamming import powers_to, hamming_encode
+from encode_hamming import powers_to, hamming_encode, matching_indices
 
 class BinaryHammingTestCase(unittest.TestCase):
     # testing the "powers_to" function
@@ -21,10 +23,20 @@ class BinaryHammingTestCase(unittest.TestCase):
 
     # testing the "hamming_encode" function
     def test_hamming_encode(self):
-        self.assertEqual(hamming_encode([1, 0, 1, 1]), [0, 1, 1, 0, 0, 1, 1])
+        self.assertEqual(hamming_encode([1, 0, 1, 1], 2), [0, 1, 1, 0, 0, 1, 1])
         self.assertEqual(hamming_encode(
-            [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0]),
+            [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0], 2),
             [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0])
+
+    # testing the "matching_indices" function
+    def matching_indices(self):
+        self.assertEqual(matching_indices(1, 7), [1, 3, 5, 7])
+        self.assertEqual(matching_indices(2, 7), [2, 3, 6, 7])
+        self.assertEqual(matching_indices(4, 7), [4, 5, 6, 7])
+        self.assertEqual(matching_indices(4, 1), [])
+        self.assertEqual(matching_indices(1, 1), [1])
+        self.assertEqual(matching_indices(1, 2), [1])
+        self.assertEqual(matching_indices(4, 5), [4, 5])
 
 if __name__ == "__main__":
     unittest.main()
