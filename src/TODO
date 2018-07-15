@@ -1,0 +1,8 @@
+comment EVERYTHING
+
+write unit tests for:
+decode_hamming.py
+encode_hamming.py (more w/ bases and all functions)
+mutate.py
+to_binary.py
+to_quat.py

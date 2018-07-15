@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[a4paper,11pt]{article}
 \title{Source tracker}
 \author{Izaak van Dongen}
 
@@ -11,7 +11,7 @@
 \usepackage[cal=boondoxo]{mathalfa}
 
 % make the document take up more of the page
-\usepackage[margin=1in,headheight=13.6pt]{geometry}
+\usepackage[margin=0.3in,headheight=13.6pt]{geometry}
 
 \usepackage{longtable}
 \usepackage{booktabs}
@@ -21,7 +21,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-\usepackage[square]{natbib}
+\usepackage[square,numbers]{natbib}
+
+\usepackage[hidelinks]{hyperref}
 
 \begin{document}
     \maketitle
@@ -57,7 +59,28 @@
     \begin{longtable}{p{0.2\linewidth} p{0.35\linewidth} p{0.35\linewidth}} \toprule
     Source & Source content/usage & Source evaluation \\ \midrule
 
-    Error detecting and error correcting codes \citep*{Codes1950Hamming} &
+    Wikipedia, The Free Encyclopedia
+    \cite{WikiCRISPR,WikiCas9,WikiHadamardCode,WikiHadamardMatrix,WikiHammingCode,
+          WikiHamming74,WikiBarcoding} &
+
+    I found several Wikipedia articles relating to my dissertation. I have
+    decided to include them here as often I used them as a starting point for my
+    research, eg to gain familiarity with the subject terminology and find
+    convenient links to other Wikipedia articles, to get more of an idea of
+    what's out there in the subject. The Wikipedia articles also provided a kind
+    of baseline understanding of the material, which was then to be corroborated
+    by my own research. They also provide their own links to other articles and
+    sites which was useful in my research. &
+
+    Obviously Wikipedia is not an academic source. In its defence, all of the
+    information I found on there was then confirmed to be broadly correct by
+    the actual literature of the subject (eg
+    \cite{Codes1950Hamming,Communication1948Shannon}). However, on its, own,
+    Wikipedia should not be considered a source, and these articles don't really
+    underpin my dissertation. In the end, I decided still to cite them as they
+    were a part of my research, as stated previously. \\
+
+    Error detecting and error correcting codes \cite{Codes1950Hamming} &
 
     Gives a construction of Hamming codes and lays the foundation for many of
     the concepts around channel-coding that I use in my dissertation. &
@@ -68,18 +91,18 @@
     also formed much of the basis of modern communication theory and can
     certainly be trusted.  \\
 
-    A mathematical theory of communication \citep*{Communication1948Shannon} & 
+    A mathematical theory of communication \cite{Communication1948Shannon} &
 
     This is also a useful paper for establishing the theory of communicative
     coding. It is useful for several definitions and general limits. &
 
-    This paper, together with \citep*{Codes1950Hamming} are generally
+    This paper, together with \cite{Codes1950Hamming} are generally
     considered to be the seminal works on coding theory. This lays much of the
     groundwork for communication theory and gives a more general definition of
-    the Hamming Code. Similarly to \citep*{Codes1950Hamming}, this is a paper
+    the Hamming Code. Similarly to \cite{Codes1950Hamming}, this is a paper
     that can be trusted \\
 
-    Generalized dna barcode design based on hamming codes \citep*{HammingBarcodes2012BystrykhLeonid} &
+    Generalized dna barcode design based on hamming codes \cite{HammingBarcodes2012BystrykhLeonid} &
 
     This article is very much relevant to what my project is about. It doesn't
     seem to be very clear though, and it uses a seemingly non-optimal form of
@@ -90,7 +113,7 @@
     the field so it can probably be trusted. The journal is slightly less
     well-known than some others I've made use of. \\
 
-    Introduction to coding theory \citep*{CodeIntro2010Guruswami} &
+    Introduction to coding theory \cite{CodeIntro2010Guruswami} &
 
     This is more of a crash-course in coding theory, which was useful in
     developing a basic understanding but can be built on. &
@@ -101,7 +124,7 @@
     It's also specifically aimed at the teaching of the subject rather than
     academic description which may be useful for my purposes. \\
 
-    Polynomial codes: an optimal design for high-dimensional coded matrix multiplication \citep*{PolynomialCodes2017MaddahAvestimehr} &
+    Polynomial codes: an optimal design for high-dimensional coded matrix multiplication \cite{PolynomialCodes2017MaddahAvestimehr} &
 
     This source provides an explanation of a facet of the polynomial code. This
     code type didn't end up being used for my project but the source was useful
@@ -113,7 +136,7 @@
     course it does have academic merit as it's a published, peer reviewed
     article. \\
 
-    Families of Hadamard z2z4q8-codes \citep*{HadamardZ2Z2012RioRifa} & 
+    Families of Hadamard z2z4q8-codes \cite{HadamardZ2Z2012RioRifa} &
 
     This is an article relating to a specific subset of Hadamard codes. I
     didn't end up using these codes but this source provided some broader
@@ -122,7 +145,7 @@
     This is again a highly technical source but is generally reputable aside
     from that. \\
 
-    Hadamard matrices and their applications \citep*{HadamardMatrices1978HedayatWallis} &
+    Hadamard matrices and their applications \cite{HadamardMatrices1978HedayatWallis} &
 
     This is a reasonably low-level paper about Hadamard codes. This was useful
     for my dissertation as I didn't use any overly complicated Hadamard
@@ -133,28 +156,28 @@
     of time, and aside from that doesn't really make any outrageous claims,
     forming more of a useful and approachable summary of the subject matter. \\
 
-    The search for Hadamard matrices \citep*{HadamardSearch1963GolombBaumert} &
+    The search for Hadamard matrices \cite{HadamardSearch1963GolombBaumert} &
 
     This paper gives a useful initial summary of the `basic' construction of
     Hadamard matrices (of size $2^n \times 2^n$)  which I use, corroborating
-    \citep*{HadamardMatrices1978HedayatWallis}. It also provides a nice summary
+    \cite{HadamardMatrices1978HedayatWallis}. It also provides a nice summary
     of other constructions, which I used to strengthen my case for not using
     them as they seemed unnecessary. &
 
     It's a trustworthy article, and again provides more of a summary. It's
     written in a relatively friendly manner. \\
 
-    Hadamard matrices and their designs: A coding-theoretic approach \citep*{HadamardCodingTheoretic1992AssmusKey} & 
+    Hadamard matrices and their designs: A coding-theoretic approach \cite{HadamardCodingTheoretic1992AssmusKey} &
 
     This paper gives a number of very mathematically involved constructions of
     Hadamard matrices. I didn't end up using any of these but it provided a
     useful further background around Hadamard constructions, and could be
-    compared/contrasted with \citep*{HadamardSearch1963GolombBaumert} & 
+    compared/contrasted with \cite{HadamardSearch1963GolombBaumert} &
 
     It's a trustworthy paper from a trustworthy journal and trustworthy
     authors. \\
 
-    Hadamard designs \citep*{HadamardDesigns1972Spence} & 
+    Hadamard designs \cite{HadamardDesigns1972Spence} &
 
     This paper is about Hadamard designs for alphabets of size $n$ where $n
     \neq 2$. This is potentially very interesting with respect to my project as
@@ -166,7 +189,7 @@
     the trustworthiness of the source due to the reasons described in section
     \ref{sourcenotes}.  \\
 
-    Lifted polynomials over ${F}_{16}$ and their applications to dna codes \citep*{PolynomialDNA2013OztasSiap} & 
+    Lifted polynomials over ${F}_{16}$ and their applications to dna codes \cite{PolynomialDNA2013OztasSiap} &
 
     This is a paper about a highly specific and even more advanced class of
     codes. It involved a lot of field theory, so for someone with an A-level
@@ -180,7 +203,7 @@
 
     \\
 
-    Codes, not ciphers \citep*{CodesCiphers1010Baylis} &
+    Codes, not ciphers \cite{CodesCiphers1010Baylis} &
 
     This is an article providing description and intruction of coding theory,
     and contrasting that with cryptography. It is aimed at a `school \ldots
@@ -192,7 +215,7 @@
 
     \\
 
-    Error correcting codes: Practical origins and mathematical implications \citep*{CodesOrigins1978Pless} &
+    Error correcting codes: Practical origins and mathematical implications \cite{CodesOrigins1978Pless} &
 
     This is a very short little paper, which provides a short history of the
     concept of codes. This makes it quite a special little paper, and quite nice
@@ -205,7 +228,7 @@
 
     \\
 
-    Boole and the algebra of logic \citep*{BooleRecords1956Kneale} &
+    Boole and the algebra of logic \cite{BooleRecords1956Kneale} &
 
     This is used as a small citation on Boolean algebra, which I needed when I
     was writing about my decision to use boolean inversion rather than additive
@@ -221,7 +244,7 @@
 
     \\
 
-    The degeneracy of the genetic code and Hadamard matrices.  \citep*{DegeneracyHadamard2008Petoukhov} &
+    The degeneracy of the genetic code and Hadamard matrices.  \cite{DegeneracyHadamard2008Petoukhov} &
 
     This is a great paper talking about how Hadamard matrices can be applied to
     and modelled against genetic code. The really cool thing is that this is a
@@ -237,7 +260,7 @@
 
     \\
 
-    Construction of multilevel Hadamard matrices with small alphabet \citep*{MultilevelConstruction2008TrinhFan} &
+    Construction of multilevel Hadamard matrices with small alphabet \cite{MultilevelConstruction2008TrinhFan} &
 
     This is a very interesting topic, as it potentially deals with the major
     limitation of Hadamard matrices - them having an alphabet of 2. Being able
@@ -251,7 +274,7 @@
 
     \\
 
-    Decoding the hamming code \citep*{DecodingHamming2006Eherenborg} &
+    Decoding the hamming code \cite{DecodingHamming2006Eherenborg} &
 
     This is a tiny article offering a quick introduction to coding theory and
     Hamming codes. It contextualises the Hamming code in an interesting new way
@@ -265,7 +288,7 @@
 
     \\
 
-    PEP 257: Docstring conventions \citep*{PEPDocstrings2014Goodger} &
+    PEP 257: Docstring conventions \cite{PEPDocstrings2014Goodger} &
 
     This is part of the Python style guide, used to back up some of my
     assertions about coding practices in my Definitions section. &
@@ -276,7 +299,7 @@
 
     \\
 
-    WHAT IS CRISPR-CAS9? \citep*{CRISPRDailymail} &
+    WHAT IS CRISPR-CAS9? \cite{CRISPRDailymail} &
 
     This is a short ``article'' offering a brief introduction of the principles
     of CRISPR-CAS9. The best part is probably a diagram produced by MIT. It's
@@ -287,13 +310,63 @@
 
     \\
 
+    American Standard Code for Information Interchange \cite{ASCII1963ASA} &
+
+    This is the standard for ASCII, which I briefly mention while discussing
+    encodings, specifically different ways to encode the letter `A'. &
+
+    This is \textbf{the} authoritative source for this purpose, as it is
+    literally the standard that I am talking about.  \\
+
+    Thoughts on inverse orthogonal matrices, simultaneous
+    signsuccessions, and \ldots \cite{OrthogonalMatrix1867Sylvester} &
+
+    This is the paper by Sylester that introduces his construction of the Walsh
+    matrices. This is important to my project as this is the construction I
+    mainly focus on/have implemented. &
+
+    Again, academic paper with significant clout, and mathematically, it works,
+    so it's good enough for me. \\
+
+    CRISPR/Cas, the Immune System of Bacteria and Archaea
+    \cite{CRISPRImmune2010Horvath} &
+
+    An article discussing the usage of CRIPR/Cas9 to various biological things.
+    This helps to contextualise the potential applications of my outcome in the
+    greater scheme of things. &
+
+    Once again, a fine paper with not much to worry about. \\
+
+    Responding to {CRISPER}\-/\-Cas9 [sic] \cite{CRISPER2016Finneran} &
+
+    This is short article discussing the ramifications/applications and ethics
+    behind CRISPR. Again, used in the discussion of why CRISPR is interesting. &
+
+    Note that the author misspelled ``CRISPR'' in the actual title - while this
+    isn't a disqualifying blow, it's a bit iffy. However, some valid points are
+    made. \\
+
+    RNA-directed gene editing specifically eradicates latent and prevents new
+    HIV-1 infection \cite{RNAHIV2014Hu} &
+
+    Article that is also used to provide some more info about how the bigger
+    picutre of gene editing can do good in the world. &
+
+    Good academic scholarly article etc.  \\
+
+    Perfect Parity Patterns: 11243 \cite{Parity2008Knuth} &
+
+    This is an article by the famous Donald Knuth involving parity, which I use
+    as a citation for the definition of parity. &
+
+    It was produced by an absolute icon and again is an academic, peer reviewed
+    article so is certainly trustworthy.  \\
+
     \bottomrule
     \end{longtable}
     }
     \end{center}
 
-\nocite{*}
 \bibliographystyle{agsm}
 \bibliography{sources}
-
 \end{document}

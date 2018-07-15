@@ -1,5 +1,5 @@
 \documentclass[a4paper,11pt]{article}
-\title{The application of noisy-channel coding techniques to DNA barcoding}
+\title{The application of noisy-channel coding techniques to synthetic DNA barcoding}
 \author{\begin{tabular}{rl}
                 Name:& Izaak van Dongen\\
            EP Mentor:& Nicolle Mcnaughton\\
@@ -86,7 +86,7 @@ top=2pt
 \usepackage[T1]{fontenc}
 
 % bibliography management with square braces for citations
-\usepackage[square]{natbib}
+\usepackage[square,numbers]{natbib}
 
 % graphics, like eps files and stuff (supersedes graphics)
 \usepackage{graphicx}
@@ -128,7 +128,13 @@ top=2pt
     \listoffigures
     \listoftables
 
-%TODO add some wikipedia citations
+%TODO mention versioning and git
+%TODO add some wikipedia citations for bulk/evaluation
+%TODO interesting as relatively new field of biology, combined with ancient
+%mathematics
+
+%TODO talk about sphere packing
+%TODO add mindmap
 
     \section[Definitions and conventions]{Definitions \footnote{Please note that
     these definitions have been somewhat simplified. It would be impractical and
@@ -167,7 +173,7 @@ top=2pt
 
     \begin{definition}
     The programs I produce will be CLI-based. That is, they will use a
-    \textbf{Command Line interface}. This means that the user interacts with the
+    \textbf{Command Line Interface}. This means that the user interacts with the
     program solely through text. Most applications nowadays use a graphical
     interface, but a CLI has many benefits, including but not limited to being
     easier to develop, being faster due to less overhead, CLI programs can
@@ -211,7 +217,7 @@ top=2pt
     of the code. This might be one function, one class, or of the whole program.
     A docstring is enclosed by three consecutive double quotes:
     \mintinline{python}|"""|. By convention, docstrings are written in the
-    imperative \citep*{PEPDocstrings2014Goodger}.
+    imperative mood \cite{PEPDocstrings2014Goodger}.
     \end{definition}
 
     \begin{definition}
@@ -239,6 +245,19 @@ top=2pt
     of code. These units are normally functions. By making sure that each
     function works, we can be reasonably confident in how robust our code is. A
     unit test is itself also a program.
+    \end{definition}
+
+    \begin{definition}
+    A \textbf{matrix} is a rectangular array of numbers. They are denoted like:
+    \begin{math}
+    M =
+    \begin{pmatrix}
+    1 & 2 & 3 \\
+    4 & 5 & 5 \\
+    \end{pmatrix}
+    \end{math}.
+    Matrices have \textbf{rows} and \textbf{columns}, which may have certain
+    properties desirable for barcodes.
     \end{definition}
 
     For my EP I have written several programs. Almost all of these are included
@@ -284,9 +303,9 @@ def this_is(some: "code") -> {"th": at}:
     \section{Introduction}
     The premise of this project is to investigate the different types of
     error-correcting codes, and how these might be applied to DNA barcoding. DNA
-    barcoding is the assignment of `barcodes' to substrands of synthesised DNA
+    barcoding is the assignment of `barcodes' to subsequences of synthesised DNA
     for the purposes of identification. This means that in future, when you look
-    at that same substrand, that should let you `ID' the whole DNA strand.
+    at that same subsequence, that should let you `ID' the whole DNA sequence.
     However, as we all know, DNA is subject to mutation, so an ideal barcode
     should still be identifiable after some number of mutations. This is where
     error-correcting codes come in.
@@ -326,6 +345,34 @@ def this_is(some: "code") -> {"th": at}:
 
     All of these will be further explored in this dissertation.
 
+    \section[Applications]{Applications \footnote{This section gives a brief
+    overview of possible applications - be aware that this is somewhat
+    abbreviated as this topic is not the focus of this dissertation.}}
+
+    You may well have heard of CRISPR/Cas9, depending on which news sources you
+    follow. CRISPR stands for ``Clustered Regularly Interspaced Short
+    Palindromic Repeats'', which is a family of DNA sequences in bacteria
+    \cite{CRISPRDailyMail,CRISPRImmune2010Horvath,WikiCrispr}. Cas9 is a
+    specific CRISPR Associated Protein \cite{WikiCas9}. Together, they provide a
+    mechanism for the editing of the DNA of an organism
+    \cite{CRISPER2016Finneran}, by using a specific kind of virus.  This
+    mechanism is shown in figure \ref{fig:crispr}.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics{../images/GRNA-Cas9.png}
+\end{center}
+\caption{Illustration of CRISPR editing DNA}\label{fig:crispr}
+\end{figure}
+
+    This mechanism requires ``guide RNA (gRNA)''. This RNA may sometimes have to
+    be synthesised on a large scale, and this is where the barcodes come in. If
+    a large ``batch'' of gRNA contains RNA to be used for different experiments,
+    this could then be barcoded in order to identify the RNA.
+
+    This is just one example of what could be done - there are many other
+    applications \cite{WikiBarcoding}.
+
     \section{The Hamming distance}
 
     The Hamming distance is a measure of ``string distance''. String
@@ -355,29 +402,37 @@ def this_is(some: "code") -> {"th": at}:
 
     \section{Parity codes}
 
+    \subsection{Parity}
+
     The insertion of ``parity bits'' is a common practice in basic encoding.
-    Parity refers to the ``oddness'' or ``evenness'' of some data. Commonly,
-    this is determined by the sum of the data modulo 2. For example, the data
-    bits ``00101'' would result in a parity bit of 0, because the sum of all the
-    bits is 2, which has a remainder of 0 when divided by 2 (ie, is equal to 0
-    mod 2).
+    Parity refers to the ``oddness'' or ``evenness'' of some data
+    \cite{Parity2008Knuth}.
+
+    Commonly, this is determined by making sure that the sum of the data is $0
+    \mod 2$. This is also known as ``even parity'', and means that the total
+    number of $1$-bits in the data should be even.  This means that the data is
+    known to have been corrupted if its sum is odd.
+
+    The reason that I am using such an elaborate definition with sums and
+    moduluses is that I know I want to adapt my codes to base 4, and by using
+    such a general definition, this is done quite easily.
 
 % correct this with regard to odd parity
 
+    \subsection{Simple example}
+
     A simple but inefficient parity encoding scheme is a column/row wise
-    encoding. Take the slightly contrived data string
-    ``\texttt{0100000101010100}''.
-    This is very tangentially related to DNA - it's the 8-bit ASCII
-    representation of the string ``AT'', generated by the Python:
-    \mintinline{python}|"". join(bin(ord(c))[2:].rjust(8, "0") for c in "AT")|
+    encoding \cite{CodeIntro2010Guruswami}. Take the slightly contrived data
+    string ``\texttt{0100000101010100}''.  This is very tangentially related to
+    DNA - it's the 8-bit ASCII \cite{ASCII1963ASA} representation of the string
+    ``AT'', generated by the Python:
+    \mintinline{python}|"".join(bin(ord(c))[2:].rjust(8, "0") for c in "AT")|
     \footnote{Sometimes I will include some `meta-code' that was used to
     generate a table or other data. Especially the smaller samples won't be as
-    extensively commented as I don't consider these core programs - they are
-    a kind of shortcut from writing the table out by hand.}.
+    extensively commented as I don't consider these core programs - they are a
+    kind of shortcut from writing the table out by hand.}.
 
-%TODO cite ASCII
-
-    The string is then split into a square like so:
+    The string is then arranged in a square like so:
 
     \begin{center}
     \texttt{
@@ -430,7 +485,9 @@ def this_is(some: "code") -> {"th": at}:
     the extra corner bit. If only the extra corner bit seems to be wrong, it is
     the one that has flipped.
 
-    However, this particularly scheme is in a sense quite inefficient. At the
+    \subsection{Limitations}
+
+    This particularly scheme is in a sense quite inefficient. At the
     most optimal configuration, it uses on the order of $2\sqrt{n}$ parity bits,
     where $n$ is the number of bits in the message, in order to achieve 1
     correction. This can be proven as follows:
@@ -471,13 +528,15 @@ legend pos=outer north east]
     \end{axis}
     \end{tikzpicture}
 \end{center}
-\caption{asymptotic performance of $\log$ and $\sqrt{}$}\label{fig:logsqrtplot}
+\caption{Asymptotic performance of $\log$ and $\sqrt{}$}\label{fig:logsqrtplot}
 \end{figure}
 
     As you can see, as $n$ increases the relative performance of the row-column
     approach degrades significantly.
 
     \section{The Hamming code}
+
+    \subsection{Description}
 
     The Hamming code instead places a parity bit at each index that is a power
     of two, where we number indices starting from 1. Therefore, our previous
@@ -566,9 +625,8 @@ legend pos=outer north east]
     errors, as normal. You then add the index of each parity bit that shows an
     error to find the index of the corrupted bit. This bit can then be flipped.
     This can only correct one error, but it is a very effective way to do so -
-    in fact, if you only want to correct one error, the Hamming code is optimal.
-
-%todo cite here
+    in fact, if you only want to correct one error, the Hamming code is optimal
+    \cite{Codes1950Hamming}.
 
     Of course, the Hamming code is not explicitly a way to generate barcodes -
     it is rather an encoding. However, error-correcting encodings can simply be
@@ -582,18 +640,22 @@ legend pos=outer north east]
     Hamming encoding. It is tested by the code in listing
     \ref{lst:testhammingbin}.
 
+    \subsection{Implementation}
+
 \begin{longlisting}
 \inputminted{python}{../src/encode_hamming.py}
 \caption{Binary Hamming code in Python}\label{lst:hammingbin}
 \end{longlisting}
 
-    \section{Adapting the Hamming code}
+    \subsection{Adaption}
 
-    Unfortunately, this all only operates on binary data, as this is more of a
-    `fundamental' base. As is, this is of no use because DNA strings are
-    fundamentally base-4.
+    Unfortunately, this all produces binary codes, as this is more of a
+    `fundamental' base in the world of computers.. As is, this is of no use
+    because DNA strings are fundamentally base-4.
 
-    However, we are quite fortunate in that 4 is a power of 2. This means that
+    \subsubsection{Na\"ive approach}
+
+    We are quite fortunate in that 4 is a power of 2. This means that
     we can directly translate a base-4 string to binary, in the case of DNA
     perhaps by mapping \texttt{ACGT} to \texttt{00 01 10 11}.
 
@@ -603,28 +665,87 @@ legend pos=outer north east]
     In any case, by writing a short program to perform this mapping, it is quite
     trivially done.
 
+    \subsubsection{Clever approach}
+
+    It is also possible to directly translate
+
     \section{The Hadamard code}
 
-%TODO citations, maybe hedayat
+    \subsection{Description}
 
     The Hadamard code is based on Hadamard matrices. A Hadamard matrix is a
-    matrix such that each pair of rows represent a pair of orthogonal vectors.
+    matrix such that each pair of rows represent a pair of orthogonal vectors
+    \cite{HadamardMatrices1978HedayatWallis}.
     Practically, this means that each row has a Hamming distance of at least
     half of its length from each other row. This is a much stronger encoding
     than the Hamming code, so may be much more resistant to mutations. However,
     as a natural side effect of this, Hadamard codes are longer and more sparse.
 
-    Here is the code implementing the basic $2^n$ hadamard matrix generation
-    scheme:
+    A basic generation scheme for a sequence of Hadamard matrices $H_{2^n}$ is given
+    by Sylvester's construction \cite{OrthogonalMatrix1867Sylvester}:
 
-\begin{longlisting}
-\inputminted{python}{../src/hadamard_matrix.py}
-\caption{Hadamard matrix generation}
-\end{longlisting}
+    \begin{align*}
+    H_1 &=
+    \begin{pmatrix}
+    1\\
+    \end{pmatrix} \\
+    H_2 &=
+    \begin{pmatrix}
+    1 &  1 \\
+    1 & -1 \\
+    \end{pmatrix} \\
+    H_{2^{n + 1}} &=
+    \begin{pmatrix}
+    H_{2^n} &  H_{2^n} \\
+    H_{2^n} & -H_{2^n} \\
+    \end{pmatrix} =
+    H_2 \otimes H_{2^n}
+    \end{align*}
 
-%TODO talk about sphere packing
+    ie the next matrix is
 
-%TODO add mindmap
+    \begin{math}
+    H_4 =
+    \begin{pmatrix}
+    \begin{pmatrix}
+    1 &  1 \\
+    1 & -1 \\
+    \end{pmatrix} &
+    \begin{pmatrix}
+    1 &  1 \\
+    1 & -1 \\
+    \end{pmatrix} \\
+    \begin{pmatrix}
+    1 &  1 \\
+    1 & -1 \\
+    \end{pmatrix} &
+    -\begin{pmatrix}
+    1 &  1 \\
+    1 & -1 \\
+    \end{pmatrix} \\
+    \end{pmatrix} =
+    \begin{pmatrix}
+    1 &  1 &  1 &  1 \\
+    1 & - 1 &  1 & - 1 \\
+    1 &  1 & - 1 & - 1 \\
+    1 & - 1 & - 1 &  1 \\
+    \end{pmatrix}
+    \end{math}
+
+    Note this construction's use of the ($-$) operator, together with the set
+    $\{1,-1\}$ as it's ``alphabet''. This is necessary for the satisfication of
+    the ``orthogonality'' definition of Hadamard matrices, but, in fact, we need
+    only a slightly weaker property, which is half of the items being different.
+    I have therefore slightly modified this construction to use the Boolean
+    alphabet $\{0,1\}$, and use the Boolean logical not ($\lnot$)
+    \cite{BooleRecords1956Kneale}. This is more suited to this application of
+    these codes, as 0 and 1 are the fundamental numbers that computers work with
+    (known as ``bits''), so this makes the implementation more natural and
+    elegant, as most programming languages have built in support for Boolean
+    logic.
+
+    The code implementing Sylvester's construction can be found in listing
+    \ref{lst:hadgen}.
 
     A visualistion of the Hadamard matrix is provided by the Python script in
     listing \ref{lst:hadpy}. It displays the matrix as a grid, where each `1' is
@@ -639,6 +760,13 @@ legend pos=outer north east]
 \end{center}
 \caption{Visualisations of ``$2^n$'' Hadamard matrices}\label{fig:hadvis}
 \end{figure}
+
+    \subsection{Implementation}
+
+\begin{longlisting}
+\inputminted{python}{../src/hadamard_matrix.py}
+\caption{Hadamard matrix generation}\label{lst:hadgen}
+\end{longlisting}
 
     \section{Unit tests}
 
@@ -719,5 +847,4 @@ print("\n".join(r"    {} \\".format(" & ".join(r"\texttt{{{}}}".format(add_color
 
 \bibliographystyle{agsm}
 \bibliography{sources}
-
 \end{document}

@@ -8,18 +8,18 @@ Decoding Hamming-encoded data
 # given to the program by the user
 import argparse
 
+# imports the sys library, which enables communication with other programs
+import sys
+
 # re-use the powers_to() function
 from encode_hamming import powers_to, matching_indices
 
 def get_args():
     """
     Use the argparse library to interpret user parameters:
-    - Where should the codes to decode be read from?
     - What base is being used to calculate the parity?
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input", type=argparse.FileType("r"), default="-",
-                            help="file to read codes from")
     parser.add_argument("--base", type=int, default=2,
                             help="base to decode in")
     return parser.parse_args()
@@ -54,6 +54,6 @@ def hamming_decode(bin_stream, base):
 
 if __name__ == "__main__":
     args = get_args()
-    for line in args.input:
+    for line in sys.stdin:
         l_code = [int(c) for c in line[:-1]]
         print("".join(map(str, hamming_decode(l_code, args.base))))
