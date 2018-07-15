@@ -8,12 +8,9 @@ Verifies that the input is in (lexicographical) ascending order
 # problem. it also communicates with other programs.
 import sys
 
-# imports "argparse" library, used to parse user parameters
-import argparse
-
 if __name__ == "__main__":
     cur_line = next(sys.stdin)
-    for line in args.input:
+    for line in sys.stdin:
         if cur_line > line:
             print("error: {!r} > {!r}".format(cur_line, line))
             sys.exit(1)

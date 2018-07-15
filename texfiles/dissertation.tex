@@ -38,9 +38,10 @@
 \rhead{Izaak van Dongen}
 \rfoot{Page \thepage\ of \pageref{LastPage}}
 
-% pretty table rules and multirow entries
+% pretty table rules and multirow entries. Also page-breaking tables
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{longtable}
 
 % plotting mathematical functions (needs version request)
 \usepackage{pgfplots}
@@ -129,12 +130,11 @@ top=2pt
     \listoftables
 
 %TODO mention versioning and git
-%TODO add some wikipedia citations for bulk/evaluation
 %TODO interesting as relatively new field of biology, combined with ancient
 %mathematics
 
-%TODO talk about sphere packing
 %TODO add mindmap
+%todo the word empirical
 
     \section[Definitions and conventions]{Definitions \footnote{Please note that
     these definitions have been somewhat simplified. It would be impractical and
@@ -147,12 +147,11 @@ top=2pt
     programs I write.
 
     \begin{definition}
-    A \textbf{program} or \textbf{script}, but not to be
-    confused with ) is a series of
-    instructions that the computer follows in order to complete a task. They are
-    normally created and shown in the form of text. Roughly speaking, each line
-    of text corresponds to one instruction for the computer to follow. A program
-    in this form is written in a programming language.
+    A \textbf{program} or \textbf{script}, is a sequence of instructions that the
+    computer follows in order to complete a task. They are normally created and
+    shown in the form of text. Roughly speaking, each line of text corresponds
+    to one instruction for the computer to follow. A program in this form is
+    written in a programming language.
     \end{definition}
 
     \begin{definition}
@@ -179,17 +178,19 @@ top=2pt
     easier to develop, being faster due to less overhead, CLI programs can
     interact with each other more easily as it provides a standard interface,
     and they are more portable. The downside of course is that it required more
-    expertise to use.
+    expertise to use, although I have sufficient experience that this is not a
+    worry. All generated data will be presented in tabular format, so there is
+    not really any need for a reader to be familiar with the CLI.
 
     An example of how I use the CLI to interact with a program is given in
-    Figure \ref{fig:cliusage}.
+    Figure \ref{figcliusage}.
     \end{definition}
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{../images/cli_usage.png}
 \end{center}
-\caption{Example of a CLI interface}\label{fig:cliusage}
+\caption{Example of a CLI interface}\label{figcliusage}
 \end{figure}
 
     \begin{definition}
@@ -236,7 +237,7 @@ top=2pt
     requesting program must \textbf{import} the function from the defining
     program. Most language also have a standard library of useful functions, so
     some imports will be from the language itself, rather than another file
-    within this EP.
+    within this project.
     \end{definition}
 
     \begin{definition}
@@ -260,7 +261,7 @@ top=2pt
     properties desirable for barcodes.
     \end{definition}
 
-    For my EP I have written several programs. Almost all of these are included
+    For my project I have written several programs. Almost all of these are included
     within the dissertation or some other component as code listings.. When
     appropriate, I have added comments and docstrings to these, to explain
     (commentate) their function.
@@ -268,7 +269,7 @@ top=2pt
     In the code listings provided, comments should be highlighted
     \mintinline{python}|#like this|, and docstrings
     \mintinline{python}|"""like this"""|. All of this is demonstrated in listing
-    \ref{lst:commentexample}.
+    \ref{lstcommentexample}.
 
 \begin{longlisting}
 \begin{minted}{python}
@@ -297,7 +298,7 @@ def this_is(some: "code") -> {"th": at}:
 
 # <- this is a comment pointing out the line numbers
 \end{minted}
-\caption{Example of a code listing with comments}\label{lst:commentexample}
+\caption{Example of a code listing with comments}\label{lstcommentexample}
 \end{longlisting}
 
     \section{Introduction}
@@ -309,10 +310,6 @@ def this_is(some: "code") -> {"th": at}:
     However, as we all know, DNA is subject to mutation, so an ideal barcode
     should still be identifiable after some number of mutations. This is where
     error-correcting codes come in.
-
-%TODO maybe some citations
-% also
-%- crispr/cas9 citations
 
     The challenge in this comes from the fact that most error-correcting codes
     are designed in base-2 (binary) whereas DNA strings are fundamentally
@@ -356,13 +353,13 @@ def this_is(some: "code") -> {"th": at}:
     specific CRISPR Associated Protein \cite{WikiCas9}. Together, they provide a
     mechanism for the editing of the DNA of an organism
     \cite{CRISPER2016Finneran}, by using a specific kind of virus.  This
-    mechanism is shown in figure \ref{fig:crispr}.
+    mechanism is shown in figure \ref{figcrispr}.
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics{../images/GRNA-Cas9.png}
 \end{center}
-\caption{Illustration of CRISPR editing DNA}\label{fig:crispr}
+\caption{Illustration of CRISPR editing DNA}\label{figcrispr}
 \end{figure}
 
     This mechanism requires ``guide RNA (gRNA)''. This RNA may sometimes have to
@@ -370,19 +367,33 @@ def this_is(some: "code") -> {"th": at}:
     a large ``batch'' of gRNA contains RNA to be used for different experiments,
     this could then be barcoded in order to identify the RNA.
 
-    This is just one example of what could be done - there are many other
+    This gene-editing technique has many different applications - to name a few:
+
+    \begin{itemize}
+    \item The treatment of HIV \cite{RNAHIV2014Hu}
+    \item Editing the genome of a soy bean \cite{Soybean2015Li}
+    \item Editing the genome of flies (Drosophila melanogaster)
+          \cite{Flies2013Ren}
+    \item Multiplexed editing of plant genomes \cite{PlantToolbox2015Lowder}
+    \item Mutagenesis (introduction of a mutation) in maize
+          \cite{Maize2015Svitashev}
+    \item Genome engineering in human stem cells \cite{StemCells2013Hou}
+    \end{itemize}
+
+    This all is just one example of what could be done - there are many other
     applications \cite{WikiBarcoding}.
 
-    \section{The Hamming distance}
+    \section{The Hamming distance and others}
 
     The Hamming distance is a measure of ``string distance''. String
-    distance is a way to define how different two string are.
+    distance is a way to define how different two strings are.
     Coding-theoretically, this can be used to quantify the amount that a
     string has been changed by transmission (or an oligonucleotide has been
     mutated).
 
     The Hamming distance between any two equally long strings $S$ and $R$
-    is given by the number of characters at identical position that differ.
+    is given by the number of characters at identical position that differ
+    \cite{Codes1950Hamming,FuzzyDistance1977SGarro}.
     For example, if we let $d_H$ denote Hamming distance, the distances
     \begin{align*}
     d_H(S, R) &= 1\\
@@ -398,7 +409,33 @@ def this_is(some: "code") -> {"th": at}:
     In terms of DNA, the Hamming distance can be used to determine the
     number of bases that have mutated.
 
-%TODO citation needed
+    This function is implemented in listing \ref{lsthaddecode}. Hamming
+    distances come up a lot in coding theory, because they are the basic way to
+    quantify the error that has occurred in a message. Furthermore, various
+    properties of code words can be expressed in terms of string distance. For
+    example, an encoding that can correct $n$ errors must have a minimum
+    distance between all strings of at least $2n$, as the whole ``radius'' of
+    code words within $n$ steps from the code word all have to deterministically
+    find their way back to the code word. Such a code can be said to be optimal
+    if this is also the exact minimum distance, as it is taking up as much space
+    as possible.
+
+    This idea of radii also ties in to the area of sphere packing. An
+    essentially equivalent formulation of the problem
+    \cite{HighDensityPackings2011OToole} of generating
+    efficient codes of length $n$ actually asks ``What is the most optimal
+    sphere packing in dimension $n$ \cite{PackingCurvature1978Boroczky}?''. Unfortunately, this is a
+    similarly difficult problem
+    \cite{SphereTheorems1947Rogers,SphereUpperBounds2014DeLaat}.
+
+    Another example is that a code that can detect $n$ errors must have a
+    minimum distance of at least $2n-1$.
+
+    The Hamming distance is not the only type of string distance - see for
+    example the Levenshtein distance
+    \cite{Levenshtein2001Navarro,StringToString1974Wagner}. However, it is the
+    only one that ended up being directly relevant to the outcome of my
+    dissertation.
 
     \section{Parity codes}
 
@@ -409,15 +446,33 @@ def this_is(some: "code") -> {"th": at}:
     \cite{Parity2008Knuth}.
 
     Commonly, this is determined by making sure that the sum of the data is $0
-    \mod 2$. This is also known as ``even parity'', and means that the total
+    \pmod{2}$. This is also known as ``even parity'', and means that the total
     number of $1$-bits in the data should be even.  This means that the data is
     known to have been corrupted if its sum is odd.
 
+    A more formal definition might be that our parity bit $b$ when applied to
+    data $D$ must be such that
+    \begin{align*}
+    b + \sum D_i  &\equiv 0 \pmod 2 \\
+    \Rightarrow b &\equiv - \sum D_i \\
+                  &\equiv \sum -D_i \pmod 2\\
+    \end{align*}
+    Now, after transmission, assuming that at most one error has occurred, if we
+    receive transmitted data $T$ and a parity bit $b_r$, we can determine if
+    that error has occurred. If we allow ourselves to assume we are in binary,
+    we need only flip the erroneous bit. However, if we assume the contrary for
+    a moment, we can calculate the necessary change $c$ to be such that
+    \begin{align*}
+    b_r + c + \sum T_i &\equiv 0 \pmod 2 \\
+    \Rightarrow c &\equiv -b_r - \sum T_i \pmod 2 \\
+    \end{align*}
+    Note that this may be shortened even further if we consider $b_r$ to be in
+    $T$. I have arranged everything in this form for ease of computation in the
+    long run (see listing \ref{lsthammingencode}).
+
     The reason that I am using such an elaborate definition with sums and
     moduluses is that I know I want to adapt my codes to base 4, and by using
-    such a general definition, this is done quite easily.
-
-% correct this with regard to odd parity
+    such a general definition, this is made relatively easily.
 
     \subsection{Simple example}
 
@@ -438,8 +493,7 @@ def this_is(some: "code") -> {"th": at}:
     \texttt{
     \begin{tabular}{cccc}
         0 & 1 & 0 & 0 \\
-        0 & 0 & 0 & 1 \\
-        0 & 1 & 0 & 1 \\
+        0 & 0 & 0 & 1 \\ 0 & 1 & 0 & 1 \\
         0 & 1 & 0 & 0
     \end{tabular}
     }
@@ -494,7 +548,6 @@ def this_is(some: "code") -> {"th": at}:
 
     Assume $n$ to be highly divisible. Let $p$ denote the number of parity
     bits, and $x$ denote the length of a row. We then have,
-
     \begin{align*}
         p &= \frac{n}{x} + x \\
         \Rightarrow \frac{dp}{dx} &= 1 - \frac{n}{x^2}
@@ -505,11 +558,10 @@ def this_is(some: "code") -> {"th": at}:
         \Rightarrow p &= \frac{n}{\sqrt{n}} + \sqrt{n} = \sqrt{n} + \sqrt{n} \\
                       &= 2\sqrt{n} \\
     \end{align*}
-
     This is quite a poor asymptotic performance - as the number of data bits
     grows larger, the number of parity bits required grows relatively fast. In
     the next section, I describe a similar code that uses only $\log_2 n$. In
-    figure \ref{fig:logsqrtplot} is a quick plot comparing the two functions.
+    figure \ref{figlogsqrtplot} is a quick plot comparing the two functions.
 
 \begin{figure}[H]
 \begin{center}
@@ -528,7 +580,7 @@ legend pos=outer north east]
     \end{axis}
     \end{tikzpicture}
 \end{center}
-\caption{Asymptotic performance of $\log$ and $\sqrt{}$}\label{fig:logsqrtplot}
+\caption{Asymptotic performance of $\log$ and $\sqrt{}$}\label{figlogsqrtplot}
 \end{figure}
 
     As you can see, as $n$ increases the relative performance of the row-column
@@ -538,14 +590,19 @@ legend pos=outer north east]
 
     \subsection{Description}
 
+    The Hamming code is actually incredibly similar to the previously described
+    row/column code. It uses the same principle of parity, but the only
+    difference is in how it picks its parity bits. It does this in a much more
+    efficient way, as previously mentioned and graphed.
+
     The Hamming code instead places a parity bit at each index that is a power
     of two, where we number indices starting from 1. Therefore, our previous
     data string gains parity bits in this configuration:
     \texttt{\textcolor{red}{10}0\textcolor{red}{1}100\textcolor{red}{0}0001010\textcolor{red}{0}10100}
     (the 1st, 2nd, 4th, 8th and 16th bits are used for parity).
-
+\
     The way the parity ``coverage'' works is shown in table
-    \ref{tab:hamming-indices}.  I have included indices up to 31. This is
+    \ref{tabhammingindices}.  I have included indices up to 31. This is
     because that is the longest encodable string with only five parity bits
     (afterwards, we have to add a parity bit at 32). Of course, a shorter code
     word can always also be encoded by just acting as if each index that is out
@@ -564,27 +621,28 @@ legend pos=outer north east]
     16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 & 31 \\
     \bottomrule
     \end{tabular}
-    \caption{Parity coverage in a Hamming code}\label{tab:hamming-indices}
+    \caption{Parity coverage in a Hamming code}\label{tabhammingindices}
 \end{center}
 \end{table}
 
     These are very deliberately chosen indices. In fact, this table was
     generated by a short code snippet that can be found in listing
-    \ref{lst:hamtab}.
+    \ref{lsthamtab}.
 
     The way that it works is by considering the value of the parity index in
     binary. For example, $4_{10}=100_{2}$. As they are powers of two, they will
-    always be of the form `$10*$' (a one followed by 0 or more zeroes).
+    always be of the form `$10*$' (a one followed by 0 or more zeroes). Each
+    other index that shares that single bit of the parity index is then also
+    included in its coverage \cite{Codes1950Hamming}.
 
-    The code in listings \ref{lst:hamcol} and \ref{lst:hamps} generates two
-    visualisations, which I find helpful. The first is table
-    \ref{tab:hamming-binary}, which is similar to table
-    \ref{tab:hamming-indices}, but transposed so each column corresponds to a
-    parity bit, and each index is written in binary:
+    I have also generated two visualisations, which I find helpful. The first is
+    table \ref{tab:hamming-binary}, which is similar to table
+    \ref{tabhammingindices}, but transposed so each column corresponds to a
+    parity bit, and each index is written in binary.
 
 \begin{table}[H]
 \begin{center}
-    \begin{tabular}{l|rrrrr}
+\begin{tabular}{l|rrrrr}
     \toprule
     Parity index & \texttt{0000\textcolor{blue}{1}} & \texttt{000\textcolor{blue}{1}0} & \texttt{00\textcolor{blue}{1}00} & \texttt{0\textcolor{blue}{1}000} & \texttt{\textcolor{blue}{1}0000} \\
     \midrule
@@ -605,12 +663,14 @@ legend pos=outer north east]
     & \texttt{1110\textcolor{blue}{1}} & \texttt{111\textcolor{blue}{1}0} & \texttt{11\textcolor{blue}{1}10} & \texttt{1\textcolor{blue}{1}110} & \texttt{\textcolor{blue}{1}1110} \\
     & \texttt{1111\textcolor{blue}{1}} & \texttt{111\textcolor{blue}{1}1} & \texttt{11\textcolor{blue}{1}11} & \texttt{1\textcolor{blue}{1}111} & \texttt{\textcolor{blue}{1}1111} \\
     \bottomrule
-    \end{tabular}
-    \caption{Indices covered by each parity bit shown in binary}\label{tab:hamming-binary}
+\end{tabular}
+\caption{Indices covered by each parity bit shown in binary - generated by
+         \ref{lsthamcol}}
+\label{tab:hamming-binary}
 \end{center}
 \end{table}
 
-    The second is shown in figure \ref{fig:hamming}. It represents each covered
+    The second is shown in figure \ref{fighamming}. It represents each covered
     bit as a filled in square, and each non-covered bit as an empty square, so
     the whole codeword is shown in every row.
 
@@ -618,7 +678,8 @@ legend pos=outer north east]
 \begin{center}
 \includegraphics{../psfiles/hamming_visualisation.eps}
 \end{center}
-\caption{Index coverage of Hamming parity bits}\label{fig:hamming}
+\caption{Index coverage of Hamming parity bits - generated by \ref{lsthamps}}
+\label{fighamming}
 \end{figure}
 
     Now, when decoding a Hamming-encoded message, you check each parity bit for
@@ -626,7 +687,7 @@ legend pos=outer north east]
     error to find the index of the corrupted bit. This bit can then be flipped.
     This can only correct one error, but it is a very effective way to do so -
     in fact, if you only want to correct one error, the Hamming code is optimal
-    \cite{Codes1950Hamming}.
+    \cite{Codes1950Hamming,HammingCodes1997Battacharryya}.
 
     Of course, the Hamming code is not explicitly a way to generate barcodes -
     it is rather an encoding. However, error-correcting encodings can simply be
@@ -636,15 +697,21 @@ legend pos=outer north east]
     barcodes of length 7 each, which can be decoded to retrieve the unique
     identifier from 0 to 15 that was associated with the DNA.
 
-    Listing \ref{lst:hammingbin} shows the program that implements a binary
-    Hamming encoding. It is tested by the code in listing
-    \ref{lst:testhammingbin}.
+    Listing \ref{lsthammingencode} shows the program that implements a binary
+    Hamming encoding.
 
     \subsection{Implementation}
 
 \begin{longlisting}
 \inputminted{python}{../src/encode_hamming.py}
-\caption{Binary Hamming code in Python}\label{lst:hammingbin}
+\caption{Hamming-encoder in Python - tested by \ref{lsttesthammingencode}}
+\label{lsthammingencode}
+\end{longlisting}
+
+\begin{longlisting}
+\inputminted{python}{../src/decode_hamming.py}
+\caption{Hamming-decoder in Python - tested by \ref{lsttesthammingdecode}}
+\label{lsthammingdecode}
 \end{longlisting}
 
     \subsection{Adaption}
@@ -657,99 +724,239 @@ legend pos=outer north east]
 
     We are quite fortunate in that 4 is a power of 2. This means that
     we can directly translate a base-4 string to binary, in the case of DNA
-    perhaps by mapping \texttt{ACGT} to \texttt{00 01 10 11}.
+    perhaps by mapping the ``characters'' \texttt{ACGT} to \texttt{00 01 10 11}.
 
     This specific ordering is quite useful as each base pair A-T and C-G is a
-    set of additive inverses mod 4, or ``number bonds to 4''.
+    set of additive inverses mod 4, or ``number bonds to 4''. They also have the
+    even stronger property that each base pair has exactly one $0$ and one $1$
+    in each index. This means that for any pair $a, b \in \{0,1\}^2$, we have
+    $a \oplus b = 11 \Rightarrow b = 11 \oplus a$. Effectively, this means that
+    we can efficiently generate the complement of a base.
 
-    In any case, by writing a short program to perform this mapping, it is quite
-    trivially done.
+    In any case, it is absolutely trivial to write a program to excecute this
+    mapping either way. Listings \ref{lsttoquat} implements conversion from
+    binary to quaternary and vice versa.
 
-    \subsubsection{Clever approach}
+\begin{longlisting}
+\inputminted{python}{../src/to_quat.py}
+\caption{Converting binary data to quaternary data and vice verse}
+\label{lsttoquat}
+\end{longlisting}
 
-    It is also possible to directly translate
+    \subsubsection{Advanced approach}
+
+    It is also possible to directly apply some of the principles of Hamming
+    encoding to base-4, with some slight modifications. The index coverage
+    remains the same. In fact, the only thing that needs to be ``changed'' is
+    what we do with parity. The easiest approach is to leave it almost the same
+    as the previous definition (which was made somewhat cumbersome on purpose).
+    We now just need to pick a parity bit so that the data sums to a multiple of
+    4, rather than an even number. This means that our parity bit must now be
+    generated by $b = \sum -D_i \pmod 4$. This is a suprisingly simple
+    alteration, and in fact all we really need to do is parametrise the program
+    by the base, as opposed to hardcoding the value $2$. I perhaps somewhat
+    cheekily already taken the liberty to do this in listing
+    \ref{lsthammingencode}, so all we need to do to utilise the approach is call
+    that program with the right parameters.
+
+    \subsection{Usage}
+
+    We can now use the script to generate some data. The first set of data
+    produced is shown in table \ref{tabhamdata}, and is the somewhat well-known
+    Hamming-$(7,4)$ code \cite{WikiHamming74} (this also means that I can be
+    sure it's correct).
+
+    The ``usage'' of these scripts also involved testing how well they respond
+    to mutations. Mutations are introduced by the code in listing
+    \ref{lstmutation}. Both of these outputs are sufficiently small that they
+    can be checked by eye, but for the command-line user who wishes to check
+    that a larger dataset is still ordered, I have also written the script
+    \ref{lstverify}.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{rcccccc} \toprule
+ID & Unencoded ID & Code & Mutated code & Recovered ID & Quaternary translation & As DNA \\ \midrule
+\texttt{0} & \texttt{0000} & \texttt{0000000} & \texttt{0001000} & \texttt{0000} & \texttt{000} & \texttt{AAA} \\
+\texttt{1} & \texttt{0001} & \texttt{1101001} & \texttt{1101011} & \texttt{0001} & \texttt{310} & \texttt{GCA} \\
+\texttt{2} & \texttt{0010} & \texttt{0101010} & \texttt{0001010} & \texttt{0010} & \texttt{111} & \texttt{CCC} \\
+\texttt{3} & \texttt{0011} & \texttt{1000011} & \texttt{1000011} & \texttt{0011} & \texttt{201} & \texttt{TAC} \\
+\texttt{4} & \texttt{0100} & \texttt{1001100} & \texttt{1001110} & \texttt{0100} & \texttt{212} & \texttt{TCT} \\
+\texttt{5} & \texttt{0101} & \texttt{0100101} & \texttt{0100101} & \texttt{0101} & \texttt{102} & \texttt{CAT} \\
+\texttt{6} & \texttt{0110} & \texttt{1100110} & \texttt{1000110} & \texttt{0110} & \texttt{303} & \texttt{GAG} \\
+\texttt{7} & \texttt{0111} & \texttt{0001111} & \texttt{0011111} & \texttt{0111} & \texttt{013} & \texttt{ACG} \\
+\texttt{8} & \texttt{1000} & \texttt{1110000} & \texttt{1110000} & \texttt{1000} & \texttt{320} & \texttt{GTA} \\
+\texttt{9} & \texttt{1001} & \texttt{0011001} & \texttt{0010001} & \texttt{1001} & \texttt{030} & \texttt{AGA} \\
+\texttt{10} & \texttt{1010} & \texttt{1011010} & \texttt{1011010} & \texttt{1010} & \texttt{231} & \texttt{TGC} \\
+\texttt{11} & \texttt{1011} & \texttt{0110011} & \texttt{0111011} & \texttt{1011} & \texttt{121} & \texttt{CTC} \\
+\texttt{12} & \texttt{1100} & \texttt{0111100} & \texttt{0111100} & \texttt{1100} & \texttt{132} & \texttt{CGT} \\
+\texttt{13} & \texttt{1101} & \texttt{1010101} & \texttt{1011101} & \texttt{1101} & \texttt{222} & \texttt{TTT} \\
+\texttt{14} & \texttt{1110} & \texttt{0010110} & \texttt{0010110} & \texttt{1110} & \texttt{023} & \texttt{ATG} \\
+\texttt{15} & \texttt{1111} & \texttt{1111111} & \texttt{1111111} & \texttt{1111} & \texttt{333} & \texttt{GGG} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\caption{Data generated by \ref{lsthammingencode} and \ref{lsthammingdecode} (with formatting by
+         \ref{lsthamdatatab})}
+ \label{tabhamdata}
+\end{table}
+
+    Table \ref{tabhamqdata} then contains some data generated directly in base
+    4, receiving a similar treatment. This is a length-3 ID encoding, so there
+    were originally 64 lines, but these have been truncated after 40.
+
+    You may notice that this data is considerably nicer than the first,
+    which was first generated in binary and then translated to quaternary as a
+    kind of intermediate stage. This needs fewer steps and can resist any kind
+    of single mutation, so, overall, seems like a good pick.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{rcccc} \toprule
+ID & Code & Mutated code & Recovered ID & As DNA \\ \midrule
+\texttt{0} & \texttt{000000} & \texttt{000000} & \texttt{000} & \texttt{AAAAAA} \\
+\texttt{1} & \texttt{030301} & \texttt{130301} & \texttt{001} & \texttt{AGAGAC} \\
+\texttt{2} & \texttt{020202} & \texttt{020202} & \texttt{002} & \texttt{ATATAT} \\
+\texttt{3} & \texttt{010103} & \texttt{210103} & \texttt{003} & \texttt{ACACAG} \\
+\texttt{4} & \texttt{300310} & \texttt{300310} & \texttt{010} & \texttt{GAAGCA} \\
+\texttt{5} & \texttt{330211} & \texttt{330211} & \texttt{011} & \texttt{GGATCC} \\
+\texttt{6} & \texttt{320112} & \texttt{320112} & \texttt{012} & \texttt{GTACCT} \\
+\texttt{7} & \texttt{310013} & \texttt{310013} & \texttt{013} & \texttt{GCAACG} \\
+\texttt{8} & \texttt{200220} & \texttt{200220} & \texttt{020} & \texttt{TAATTA} \\
+\texttt{9} & \texttt{230121} & \texttt{220121} & \texttt{021} & \texttt{TGACTC} \\
+\texttt{10} & \texttt{220022} & \texttt{220023} & \texttt{022} & \texttt{TTAATT} \\
+\texttt{11} & \texttt{210323} & \texttt{210323} & \texttt{023} & \texttt{TCAGTG} \\
+\texttt{12} & \texttt{100130} & \texttt{103130} & \texttt{030} & \texttt{CAACGA} \\
+\texttt{13} & \texttt{130031} & \texttt{130031} & \texttt{031} & \texttt{CGAAGC} \\
+\texttt{14} & \texttt{120332} & \texttt{120332} & \texttt{032} & \texttt{CTAGGT} \\
+\texttt{15} & \texttt{110233} & \texttt{112233} & \texttt{033} & \texttt{CCATGG} \\
+\texttt{16} & \texttt{331000} & \texttt{321000} & \texttt{100} & \texttt{GGCAAA} \\
+\texttt{17} & \texttt{321301} & \texttt{321301} & \texttt{101} & \texttt{GTCGAC} \\
+\texttt{18} & \texttt{311202} & \texttt{211202} & \texttt{102} & \texttt{GCCTAT} \\
+\texttt{19} & \texttt{301103} & \texttt{301100} & \texttt{103} & \texttt{GACCAG} \\
+\texttt{20} & \texttt{231310} & \texttt{211310} & \texttt{110} & \texttt{TGCGCA} \\
+\texttt{21} & \texttt{221211} & \texttt{021211} & \texttt{111} & \texttt{TTCTCC} \\
+\texttt{22} & \texttt{211112} & \texttt{213112} & \texttt{112} & \texttt{TCCCCT} \\
+\texttt{23} & \texttt{201013} & \texttt{203013} & \texttt{113} & \texttt{TACACG} \\
+\texttt{24} & \texttt{131220} & \texttt{131220} & \texttt{120} & \texttt{CGCTTA} \\
+\texttt{25} & \texttt{121121} & \texttt{121122} & \texttt{121} & \texttt{CTCCTC} \\
+\texttt{26} & \texttt{111022} & \texttt{111022} & \texttt{122} & \texttt{CCCATT} \\
+\texttt{27} & \texttt{101323} & \texttt{101322} & \texttt{123} & \texttt{CACGTG} \\
+\texttt{28} & \texttt{031130} & \texttt{331130} & \texttt{130} & \texttt{AGCCGA} \\
+\texttt{29} & \texttt{021031} & \texttt{121031} & \texttt{131} & \texttt{ATCAGC} \\
+\texttt{30} & \texttt{011332} & \texttt{010332} & \texttt{132} & \texttt{ACCGGT} \\
+\texttt{31} & \texttt{001233} & \texttt{001213} & \texttt{133} & \texttt{AACTGG} \\
+\texttt{32} & \texttt{222000} & \texttt{222300} & \texttt{200} & \texttt{TTTAAA} \\
+\texttt{33} & \texttt{212301} & \texttt{232301} & \texttt{201} & \texttt{TCTGAC} \\
+\texttt{34} & \texttt{202202} & \texttt{202202} & \texttt{202} & \texttt{TATTAT} \\
+\texttt{35} & \texttt{232103} & \texttt{332103} & \texttt{203} & \texttt{TGTCAG} \\
+\texttt{36} & \texttt{122310} & \texttt{122310} & \texttt{210} & \texttt{CTTGCA} \\
+\texttt{37} & \texttt{112211} & \texttt{112211} & \texttt{211} & \texttt{CCTTCC} \\
+\texttt{38} & \texttt{102112} & \texttt{132112} & \texttt{212} & \texttt{CATCCT} \\
+\texttt{39} & \texttt{132013} & \texttt{132013} & \texttt{213} & \texttt{CGTACG} \\
+\ldots \\
+\bottomrule
+\end{tabular}
+\end{center}
+\caption{Data generated by \ref{lsthammingencode} and \ref{lsthammingdecode} (with formatting by
+         \ref{lsthamqdatatab})}
+\label{tabhamqdata}
+\end{table}
+
+\begin{longlisting}
+\inputminted{python}{../src/mutate.py}
+\caption{Mutation-inducing code}\label{lstmutation}
+\end{longlisting}
+
+\begin{longlisting}
+\inputminted{python}{../src/verify.py}
+\caption{Verification script, to check validity of output}\label{lstverify}
+\end{longlisting}
 
     \section{The Hadamard code}
 
     \subsection{Description}
 
     The Hadamard code is based on Hadamard matrices. A Hadamard matrix is a
-    matrix such that each pair of rows represent a pair of orthogonal vectors
+    matrix such that each pair of rows represent a pair of orthogonal
+    \cite{Orthogonal1981Burley} vectors
     \cite{HadamardMatrices1978HedayatWallis}.
     Practically, this means that each row has a Hamming distance of at least
     half of its length from each other row. This is a much stronger encoding
     than the Hamming code, so may be much more resistant to mutations. However,
     as a natural side effect of this, Hadamard codes are longer and more sparse.
 
-    A basic generation scheme for a sequence of Hadamard matrices $H_{2^n}$ is given
-    by Sylvester's construction \cite{OrthogonalMatrix1867Sylvester}:
-
+    A basic generation scheme for a sequence of Hadamard matrices $H_{2^n}$ is
+    given by Sylvester's construction \cite{OrthogonalMatrix1867Sylvester}:
     \begin{align*}
     H_1 &=
-    \begin{pmatrix}
+    \begin{pmatrix*}[r]
     1\\
-    \end{pmatrix} \\
+    \end{pmatrix*} \\
     H_2 &=
-    \begin{pmatrix}
+    \begin{pmatrix*}[r]
     1 &  1 \\
     1 & -1 \\
-    \end{pmatrix} \\
+    \end{pmatrix*} \\
     H_{2^{n + 1}} &=
-    \begin{pmatrix}
+    \begin{pmatrix*}[r]
     H_{2^n} &  H_{2^n} \\
     H_{2^n} & -H_{2^n} \\
-    \end{pmatrix} =
-    H_2 \otimes H_{2^n}
+    \end{pmatrix*} =
+    H_2 \otimes H_{2^n},\ \text{where $\otimes$ is the Kr\"onecker product
+    \cite{KroneckerProduct1955Vartak}}
     \end{align*}
-
     ie the next matrix is
-
     \begin{math}
     H_4 =
-    \begin{pmatrix}
-    \begin{pmatrix}
+    \begin{pmatrix*}[r]
+    \begin{pmatrix*}[r]
     1 &  1 \\
     1 & -1 \\
-    \end{pmatrix} &
-    \begin{pmatrix}
+    \end{pmatrix*} &
+    \begin{pmatrix*}[r]
     1 &  1 \\
     1 & -1 \\
-    \end{pmatrix} \\
-    \begin{pmatrix}
+    \end{pmatrix*} \\
+    \begin{pmatrix*}[r]
     1 &  1 \\
     1 & -1 \\
-    \end{pmatrix} &
-    -\begin{pmatrix}
+    \end{pmatrix*} &
+    -\begin{pmatrix*}[r]
     1 &  1 \\
     1 & -1 \\
-    \end{pmatrix} \\
-    \end{pmatrix} =
-    \begin{pmatrix}
+    \end{pmatrix*} \\
+    \end{pmatrix*} =
+    \begin{pmatrix*}[r]
     1 &  1 &  1 &  1 \\
     1 & - 1 &  1 & - 1 \\
     1 &  1 & - 1 & - 1 \\
     1 & - 1 & - 1 &  1 \\
-    \end{pmatrix}
+    \end{pmatrix*}
     \end{math}
 
-    Note this construction's use of the ($-$) operator, together with the set
+    Note that for any such $H_{2^n}$,
+    $\begin{pmatrix*}[r] H_{2^n} \\ -H_{2^n} \\ \end{pmatrix*}$
+    is also a Hadamard matrix. This final version is what I will implement.
+
+    This construction's uses the ($-$) operator, together with the set
     $\{1,-1\}$ as it's ``alphabet''. This is necessary for the satisfication of
     the ``orthogonality'' definition of Hadamard matrices, but, in fact, we need
     only a slightly weaker property, which is half of the items being different.
     I have therefore slightly modified this construction to use the Boolean
     alphabet $\{0,1\}$, and use the Boolean logical not ($\lnot$)
     \cite{BooleRecords1956Kneale}. This is more suited to this application of
-    these codes, as 0 and 1 are the fundamental numbers that computers work with
-    (known as ``bits''), so this makes the implementation more natural and
+    these codes, as $0$ and $1$ are the fundamental numbers that computers work
+    with (known as ``bits''), so this makes the implementation more natural and
     elegant, as most programming languages have built in support for Boolean
     logic.
 
     The code implementing Sylvester's construction can be found in listing
-    \ref{lst:hadgen}.
+    \ref{lsthadgen}.
 
-    A visualistion of the Hadamard matrix is provided by the Python script in
-    listing \ref{lst:hadpy}. It displays the matrix as a grid, where each `1' is
-    filled in, as in figure \ref{fig:hadvis}.
+    A visualistion of the Hadamard matrix is provided in
+    figure \ref{fighadvis}. It displays the matrix as a grid, where each `1' is
+    filled in.
 
 \begin{figure}[H]
 \begin{center}
@@ -758,15 +965,95 @@ legend pos=outer north east]
 \includegraphics[height=0.3\textheight]{../psfiles/hadamard_4.eps}
 \includegraphics[height=0.3\textheight]{../psfiles/hadamard_5.eps}
 \end{center}
-\caption{Visualisations of ``$2^n$'' Hadamard matrices}\label{fig:hadvis}
+\caption{Visualisations of ``$2^n$'' Hadamard matrices - generated by
+         \ref{lsthadpy}}
+\label{fighadvis}
 \end{figure}
 
     \subsection{Implementation}
 
 \begin{longlisting}
 \inputminted{python}{../src/hadamard_matrix.py}
-\caption{Hadamard matrix generation}\label{lst:hadgen}
+\caption{Hadamard matrix generation - tested by \ref{lsttesthadamardmat}}
+\label{lsthadgen}
 \end{longlisting}
+
+\begin{longlisting}
+\inputminted{python}{../src/hadamard_decode.py}
+\caption{Hadamard matrix generation - tested by \ref{lsttesthadamarddecode}}
+\label{lsthaddecode}
+\end{longlisting}
+
+    \subsection{Usage}
+
+    Now, having written these, we can execute some tests using the same programs
+    we had previously. Table \ref{tabhaddata} goes through a similar process as
+    \ref{tabhamdata} and \ref{tabhamqdata}, but omits some of the stages in the
+    interest of space.
+
+    This table shows an introduction of no less than 7 mutations to each code,
+    which is 32 bits long (the trade-off). This is the maximum recoverable
+    error in a Sylvester Hadamard code, due to the reasons discussed in terms of
+    Hamming distance earlier (Hamming distance between each code is $16$).
+    However, this is a non-trivial number of bits, and is a major strength of
+    the Hadamard code - it is able to recover from significant data loss. This
+    means it is used in particularly noise real-world communications
+    \cite{OrthogonalCodes2002Amadei}.
+
+\begin{table}[H]
+\begin{center}
+\small{
+\begin{tabular}{ccrc} \toprule
+Code & Mutation & ID & DNA \\ \midrule
+\texttt{10010110011010010110100110010110} & \texttt{10010010011010010110000110010111} & \texttt{0} & \texttt{TCCTCTTCCTTCTCCT} \\
+\texttt{11000011001111000011110011000011} & \texttt{11010001001111001011111001000001} & \texttt{1} & \texttt{GAAGAGGAAGGAGAAG} \\
+\texttt{10100101010110100101101010100101} & \texttt{10100101010110100100111110000101} & \texttt{2} & \texttt{TTCCCCTTCCTTTTCC} \\
+\texttt{11110000000011110000111111110000} & \texttt{11110000000011010100101111110000} & \texttt{3} & \texttt{GGAAAAGGAAGGGGAA} \\
+\texttt{10011001011001100110011010011001} & \texttt{10110001001000100110011010011001} & \texttt{4} & \texttt{TCTCCTCTCTCTTCTC} \\
+\texttt{11001100001100110011001111001100} & \texttt{11001100001101110011001111001100} & \texttt{5} & \texttt{GAGAAGAGAGAGGAGA} \\
+\texttt{10101010010101010101010110101010} & \texttt{11111010011101010101010110101010} & \texttt{6} & \texttt{TTTTCCCCCCCCTTTT} \\
+\texttt{11111111000000000000000011111111} & \texttt{11111101000010000001000010110111} & \texttt{7} & \texttt{GGGGAAAAAAAAGGGG} \\
+\texttt{10010110100101100110100101101001} & \texttt{10010110100001000110100101111001} & \texttt{8} & \texttt{TCCTTCCTCTTCCTTC} \\
+\texttt{11000011110000110011110000111100} & \texttt{11000101110000010011110000111000} & \texttt{9} & \texttt{GAAGGAAGAGGAAGGA} \\
+\texttt{10100101101001010101101001011010} & \texttt{10100111101001010100111000011010} & \texttt{10} & \texttt{TTCCTTCCCCTTCCTT} \\
+\texttt{11110000111100000000111100001111} & \texttt{11110001111100000100111100001111} & \texttt{11} & \texttt{GGAAGGAAAAGGAAGG} \\
+\texttt{10011001100110010110011001100110} & \texttt{10111001100110010110011001100110} & \texttt{12} & \texttt{TCTCTCTCCTCTCTCT} \\
+\texttt{11001100110011000011001100110011} & \texttt{11001100000011000001000100110011} & \texttt{13} & \texttt{GAGAGAGAAGAGAGAG} \\
+\texttt{10101010101010100101010101010101} & \texttt{10111010101010100001010101010001} & \texttt{14} & \texttt{TTTTTTTTCCCCCCCC} \\
+\texttt{11111111111111110000000000000000} & \texttt{11101111101111110000000010000010} & \texttt{15} & \texttt{GGGGGGGGAAAAAAAA} \\
+\texttt{10010110011010011001011001101001} & \texttt{10010111101010011011010001101101} & \texttt{16} & \texttt{TCCTCTTCTCCTCTTC} \\
+\texttt{11000011001111001100001100111100} & \texttt{11000011001111000100001010111100} & \texttt{17} & \texttt{GAAGAGGAGAAGAGGA} \\
+\texttt{10100101010110101010010101011010} & \texttt{00100101010010001010010101111010} & \texttt{18} & \texttt{TTCCCCTTTTCCCCTT} \\
+\texttt{11110000000011111111000000001111} & \texttt{01010000000011111111000000001111} & \texttt{19} & \texttt{GGAAAAGGGGAAAAGG} \\
+\texttt{10011001011001101001100101100110} & \texttt{10011111011001101001100101100111} & \texttt{20} & \texttt{TCTCCTCTTCTCCTCT} \\
+\texttt{11001100001100111100110000110011} & \texttt{11001100101010111100110000111001} & \texttt{21} & \texttt{GAGAAGAGGAGAAGAG} \\
+\texttt{10101010010101011010101001010101} & \texttt{10101010010001101010101001010100} & \texttt{22} & \texttt{TTTTCCCCTTTTCCCC} \\
+\texttt{11111111000000001111111100000000} & \texttt{11011111000000001111111100001000} & \texttt{23} & \texttt{GGGGAAAAGGGGAAAA} \\
+\texttt{10010110100101101001011010010110} & \texttt{11010100100001101001011000010110} & \texttt{24} & \texttt{TCCTTCCTTCCTTCCT} \\
+\texttt{11000011110000111100001111000011} & \texttt{11010011100000011100001111100011} & \texttt{25} & \texttt{GAAGGAAGGAAGGAAG} \\
+\texttt{10100101101001011010010110100101} & \texttt{10000101101001011000010110100101} & \texttt{26} & \texttt{TTCCTTCCTTCCTTCC} \\
+\texttt{11110000111100001111000011110000} & \texttt{11100001110000001111000011110000} & \texttt{27} & \texttt{GGAAGGAAGGAAGGAA} \\
+\texttt{10011001100110011001100110011001} & \texttt{10001101100110011001100110111101} & \texttt{28} & \texttt{TCTCTCTCTCTCTCTC} \\
+\texttt{11001100110011001100110011001100} & \texttt{11001100110001001000110001011101} & \texttt{29} & \texttt{GAGAGAGAGAGAGAGA} \\
+\texttt{10101010101010101010101010101010} & \texttt{10101010101010111010101011101010} & \texttt{30} & \texttt{TTTTTTTTTTTTTTTT} \\
+\texttt{11111111111111111111111111111111} & \texttt{10101110101111111111100111111111} & \texttt{31} & \texttt{GGGGGGGGGGGGGGGG} \\
+\texttt{01101001100101101001011001101001} & \texttt{01101011100101001001011011100001} & \texttt{32} & \texttt{CTTCTCCTTCCTCTTC} \\
+\texttt{00111100110000111100001100111100} & \texttt{00111000111000111100100100111000} & \texttt{33} & \texttt{AGGAGAAGGAAGAGGA} \\
+\texttt{01011010101001011010010101011010} & \texttt{01011010101000011010010101010111} & \texttt{34} & \texttt{CCTTTTCCTTCCCCTT} \\
+\texttt{00001111111100001111000000001111} & \texttt{00001111111100001101110010001111} & \texttt{35} & \texttt{AAGGGGAAGGAAAAGG} \\
+\texttt{01100110100110011001100101100110} & \texttt{01101110100110111001000101100010} & \texttt{36} & \texttt{CTCTTCTCTCTCCTCT} \\
+\texttt{00110011110011001100110000110011} & \texttt{10110011110011001001110100100001} & \texttt{37} & \texttt{AGAGGAGAGAGAAGAG} \\
+\texttt{01010101101010101010101001010101} & \texttt{01010101101010011010111001010101} & \texttt{38} & \texttt{CCCCTTTTTTTTCCCC} \\
+\texttt{00000000111111111111111100000000} & \texttt{00000000101111111111001000100000} & \texttt{39} & \texttt{AAAAGGGGGGGGAAAA} \\
+\ldots \\
+\bottomrule
+\end{tabular}
+}
+\end{center}
+\caption{Testing Hadamard code programs \ref{lsthadgen} and \ref{lsthaddecode}
+         (with formatting by \ref{lsthaddatatab})}
+\label{tabhaddata}
+\end{table}
 
     \section{Unit tests}
 
@@ -778,27 +1065,41 @@ legend pos=outer north east]
 
 \begin{longlisting}
 \inputminted{python}{../src/test_encode_hamming.py}
-\caption{Unit tests for encode\_hamming}\label{lst:testhammingbin}
+\caption{Unit tests for encode\_hamming - listing \ref{lsthammingencode}}
+\label{lsttesthammingencode}
+\end{longlisting}
+
+\begin{longlisting}
+\inputminted{python}{../src/test_decode_hamming.py}
+\caption{Unit tests for decode\_hamming - listing \ref{lsthammingdecode}}
+\label{lsttesthammingdecode}
 \end{longlisting}
 
 \begin{longlisting}
 \inputminted{python}{../src/test_hadamard_matrix.py}
-\caption{Unit tests for hadamard\_matrix}\label{lst:testhadamardmat}
+\caption{Unit tests for hadamard\_matrix - listing \ref{lsthadgen}}
+\label{lsttesthadamardmat}
+\end{longlisting}
+
+\begin{longlisting}
+\inputminted{python}{../src/test_hadamard_decode.py}
+\caption{Unit tests for hadamard\_decode - listing \ref{lsthaddecode}}
+\label{lsttesthadamarddecode}
 \end{longlisting}
 
     \section{Miscellaneous listings}
 
-    Below are all the listings that I don't consider to be important to the
-    DNA barcoding part of my dissertation, but have still included as it is
-    material that I have produced for my EP, and illustrate some of the work
-    that has gone into the production of the actual dissertation.
+    Below are all the listings that I don't consider to be important to the DNA
+    barcoding part of my dissertation, but have still included as it is material
+    that I have produced for my project, and illustrate some of the work that
+    has gone into the production of the actual dissertation.
 
 \begin{longlisting}
 \begin{minted}{python}
 for p_ind in (1 << pwr for pwr in range(5)):
     print(r"    {} \\".format(" & ".join(str(i) for i in range(1, 33) if i & p_ind)))
 \end{minted}
-\caption{Generating Hamming coverage indices}\label{lst:hamtab}
+\caption{Generating Hamming coverage indices}\label{lsthamtab}
 \end{longlisting}
 
 \begin{longlisting}
@@ -811,29 +1112,102 @@ print("\n".join(r"    {} \\".format(" & ".join(r"\texttt{{{}}}".format(add_color
             for sig_ind, i in enumerate(row)))
             for row in table))
 \end{minted}
-\caption{Generating binary table}\label{lst:hamcol}
+\caption{Generating binary table}\label{lsthamcol}
+\end{longlisting}
+
+\begin{longlisting}
+\begin{minted}{python}
+from encode_hamming import generate_codes
+from decode_hamming import hamming_decode
+from mutate import mutate
+from to_quat import to_quat
+from as_dna import to_dna
+print(r"\begin{tabular}{rcccccc} \toprule")
+print(r"ID & Unencoded ID & Code & Mutated code & Recovered ID & Quaternary translation & As DNA \\ \midrule")
+for ind, code in enumerate(generate_codes(2, 4)):
+    scode = "".join(map(str, code))
+    mut = mutate(scode, 2, 1, "01")
+    recov = "".join(map(str, hamming_decode([int(c) for c in mut], 2)))
+    print((" & ".join([r"\texttt{{{}}}"] * 7) + r" \\").format(ind, f"{ind:04b}", scode, mut, recov, to_quat(scode), to_dna(to_quat(scode))))
+print(r"\bottomrule")
+print(r"\end{tabular}")
+\end{minted}
+\caption{Formatting table of data \ref{tabhamdata}}\label{lsthamdatatab}
+\end{longlisting}
+
+\begin{longlisting}
+\begin{minted}{python}
+from encode_hamming import generate_codes
+from decode_hamming import hamming_decode
+from mutate import mutate
+from as_dna import to_dna
+print(r"\begin{tabular}{rcccc} \toprule")
+print(r"ID & Code & Mutated code & Recovered ID & As DNA \\ \midrule")
+for ind, code in takewhile(lambda ic: ic[0] < 40, enumerate(generate_codes(4, 3))):
+    scode = "".join(map(str, code))
+    mut = mutate(scode, 4, 1, "0123")
+    recov = "".join(map(str, hamming_decode([int(c) for c in mut], 4)))
+    print((" & ".join([r"\texttt{{{}}}"] * 5) + r" \\").format(ind, scode, mut, recov, to_dna(scode)))
+print(r"\ldots \\")
+print(r"\bottomrule")
+print(r"\end{tabular}")
+\end{minted}
+\caption{Formatting table of data \ref{tabhamqdata}}\label{lsthamqdatatab}
+\end{longlisting}
+
+\begin{longlisting}
+\begin{minted}{python}
+from hadamard_matrix import get_matrix
+from hadamard_decode import find_best
+from to_quat import to_quat
+from as_dna import to_dna
+from mutate import mutate
+print(r"\begin{tabular}{ccrc} \toprule")
+print(r"Code & Mutation & ID & DNA \\ \midrule")
+mat = get_matrix(5)
+for ind, code in takewhile(lambda ic: ic[0] < 40, enumerate(mat)):
+    code_txt = "".join(map(str, map(int, code)))
+    mut = [int(c) for c in mutate(code_txt, 2, 7, "01")]
+    recov = find_best(mut, mat)
+    print((" & ".join([r"\texttt{{{}}}"] * 4) + r" \\").format(code_txt, "".join(map(str, map(int, mut))), recov, to_dna(to_quat(code_txt))))
+print(r"\ldots \\")
+print(r"\bottomrule")
+print(r"\end{tabular}")
+\end{minted}
+\caption{Formatting table of data \ref{tabhaddata}}\label{lsthaddatatab}
 \end{longlisting}
 
 \begin{longlisting}
 \inputminted{postscript}{../psfiles/hamming_visualisation.ps}
-\caption{Hamming index coverage}\label{lst:hamps}
+\caption{Hamming index coverage}\label{lsthamps}
 \end{longlisting}
 
 \begin{longlisting}
 \inputminted{python}{../src/generate_ham_vis.py}
-\caption{Hadamard visualisation (uses code in \ref{lst:hadps})}\label{lst:hadpy}
+\caption{Hadamard visualisation (uses code in \ref{lsthadps})}\label{lsthadpy}
 \end{longlisting}
 
 \begin{longlisting}
 \inputminted{postscript}{../src/hadamard_template.ps}
-\caption{Template for Hadamard graphic}\label{lst:hadps}
+\caption{Template for Hadamard graphic}\label{lsthadps}
 \end{longlisting}
+
+    \section{Other limitations}
+
+    In reality, not all strings of nucleotides are well-suited to synthesis. For
+    example, an overly symmetrically structured oligonucleotide may be more
+    susceptable to melting at lower temperatures
+    \cite{MeltingCurve1979Azbel,MeltingPoint1980Pitkin} or suffer other effects
+    such as denaturation \cite{Denaturation2010Reisner}. Tools such as oligotm
+    \cite{oligotm} may be used to calculate this melting temperature, and that
+    would probably be a valuable addition to the code I've produced.
 
     \section{Source}
 
     This document consists of about
     \input{|"texcount dissertation.tex | awk '/^Words in text/{print $NF-1}'"}
-    words.
+    words, in addition to \input{|"cat ../src/*{.py,ps} | wc -w"} words of source
+    code.
 
     All code and source \TeX/\LaTeX{} files can be found at
     \url{https://github.com/elterminad0r/EPQ}.

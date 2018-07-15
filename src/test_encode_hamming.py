@@ -11,7 +11,7 @@ import unittest
 
 from encode_hamming import powers_to, hamming_encode, matching_indices
 
-class BinaryHammingTestCase(unittest.TestCase):
+class HammingEncodeTestCase(unittest.TestCase):
     # testing the "powers_to" function
     def test_powers_to(self):
         self.assertEqual(list(powers_to(0)), [])

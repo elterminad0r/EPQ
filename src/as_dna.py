@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
 
 """
-Convert binary to quaternary
+Convert quaternary to DNA bases ACTG, or the other way.
 """
 
-# Translation table for binary to quaternary
-CORR = {("0", "0"): "0",
-        ("0", "1"): "1",
-        ("1", "0"): "2",
-        ("1", "1"): "3"}
+# Translation table for quaternary to DNA
+CORR = dict(zip(*(map(ord, s) for s in ("0123", "ACTG"))))
 
-# reverse the translation table
-REV = {v: k for k, v in CORR.items()}
+INV = {v: k for k, v in CORR.items()}
 
 # import sys library - reading input and writing output
 import sys
@@ -22,35 +18,28 @@ import argparse
 def get_args():
     """
     Get arguments. Determine if:
-    - the user wished to convert from quaternary to binary, instead
+    - the user wished to convert from DNA to quaternary instead
     """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("-i", "--inverse", action="store_true",
                             help="convert back from DNA instead")
     return parser.parse_args()
 
-def chunk(it, n):
-    """
-    Split a sequence into chunks - in this case used to split binary into pairs
-    of bits
-    """
-    return zip(*[iter(it)] * n)
-
-def to_quat(string):
+def to_dna(string):
     """
     Turn a binary string into quaternary
     """
-    return "".join(CORR[ch] for ch in chunk(string, 2))
+    return string.translate(CORR)
 
-def to_binary(string):
+def from_dna(string):
     """
-    Translate a string to binary
+    Turn a quaternary string into binary
     """
-    return "".join("".join(REV[c]) for c in string)
+    return string.translate(INV)
 
 # if called directly, transform each line of input to quaternary
 if __name__ == "__main__":
     args = get_args()
-    apply_func = to_binary if args.inverse else to_quat
+    apply_func = from_dna if args.inverse else to_dna
     for line in sys.stdin:
         print(apply_func(line[:-1]))

@@ -6,3 +6,5 @@ encode_hamming.py (more w/ bases and all functions)
 mutate.py
 to_binary.py
 to_quat.py
+
+010103 mutates into 010123 causes problems

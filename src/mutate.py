@@ -45,5 +45,5 @@ def mutate(string, base, n, alphabet):
 if __name__ == "__main__":
     args = get_args()
     alphabet = list(map(str, range(args.base)))
-    for line in stdin:
+    for line in sys.stdin:
         print(mutate(line[:-1], args.base, args.n, alphabet))

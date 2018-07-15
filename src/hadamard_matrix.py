@@ -44,7 +44,10 @@ def prettify(had_mat, t_char="x", f_char=" "):
 
 def hadamard_iterate(mat):
     """
-    Perform a Hadamard iteration on a matrix.
+    Perform a Hadamard iteration on a matrix. The alphabet used is {0,1}, and
+    logical negation is used as the negative operator. NB Booleans are a
+    subclass of int, so this preserves nice things like comparing the values to
+    integers.
     """
     for r_ind in range(len(mat)):
         # add the current row the the end of the matrix, duplicated twice
